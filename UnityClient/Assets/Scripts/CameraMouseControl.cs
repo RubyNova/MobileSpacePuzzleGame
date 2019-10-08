@@ -7,13 +7,13 @@ public class CameraMouseControl : MonoBehaviour
 
     private Vector2 _mouseDirection;
 
-    private Transform parentBody;
+    private Transform _parentBody;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        parentBody = this.transform.parent.transform;
+        _parentBody = this.transform.parent.transform;
     }
 
     // Update is called once per frame
@@ -25,6 +25,6 @@ public class CameraMouseControl : MonoBehaviour
 
         transform.localRotation = Quaternion.AngleAxis(-_mouseDirection.y, Vector3.right);
 
-        parentBody.localRotation = Quaternion.AngleAxis(_mouseDirection.x, Vector3.up);
+        _parentBody.localRotation = Quaternion.AngleAxis(_mouseDirection.x, Vector3.up);
     }
 }
