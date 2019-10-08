@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMouseControl : MonoBehaviour
 {
 
-    private Vector2 mouseDirection;
+    private Vector2 _mouseDirection;
 
     private Transform parentBody;
 
@@ -21,10 +21,10 @@ public class CameraMouseControl : MonoBehaviour
     {
         Vector2 mouseChange = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
-        mouseDirection += mouseChange;
+        _mouseDirection += mouseChange;
 
-        this.transform.localRotation = Quaternion.AngleAxis(-mouseDirection.y, Vector3.right);
+        transform.localRotation = Quaternion.AngleAxis(-_mouseDirection.y, Vector3.right);
 
-        parentBody.localRotation = Quaternion.AngleAxis(mouseDirection.x, Vector3.up);
+        parentBody.localRotation = Quaternion.AngleAxis(_mouseDirection.x, Vector3.up);
     }
 }

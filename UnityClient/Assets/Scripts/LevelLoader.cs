@@ -5,8 +5,5 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public void ChangeScene()
-    {
-        SceneManager.LoadScene("Room2");
-    }
+    public void ChangeScene() => SceneManager.LoadScene("Room1");
 }
