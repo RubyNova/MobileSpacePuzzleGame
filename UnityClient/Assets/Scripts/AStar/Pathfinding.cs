@@ -1,73 +1,98 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System;
 using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    public Transform seeker, target;
+    private PathRequestManager requestManager;
     Graph graph;
 
     void Awake()
     {
+        requestManager = GetComponent<PathRequestManager>();
         graph = GetComponent<Graph>();
     }
 
-    void Update() {
-        FindPath (seeker.position, target.position);
+    public void StartFindPath(Vector3 startPos, Vector3 targetPos)
+    {
+        // This class will start the FindPath Coroutine
+        StartCoroutine(FindPath(startPos, targetPos));
     }
 
-    void FindPath(Vector3 startPos, Vector3 targetPos)
+    IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
     {
+        // Stopwatch to see the performance gain through heap optimization
+        Stopwatch sw = new Stopwatch();
+        // Start stopwatch
+        sw.Start();
+
+        Vector3[] waypoints = new Vector3[0];
+        bool pathSuccess = false;
+        
         Node startNode = graph.NodeFromWorldPoint(startPos);
         Node targetNode = graph.NodeFromWorldPoint(targetPos);
-
-        List<Node> openSet = new List<Node>();
-        HashSet<Node> closedSet = new HashSet<Node>();
-        openSet.Add(startNode);
-
-        while (openSet.Count > 0)
+        
+        // If the start or end nodes are not walkable do not bother finding a path
+        if (startNode.walkable && targetNode.walkable)
         {
-            // This is equal to the first node in the open set
-            Node currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
+            // Implementing the Heap Optimization into the former lists.
+            Heap<Node> openSet = new Heap<Node>(graph.MaxSize);
+            HashSet<Node> closedSet = new HashSet<Node>();
+            openSet.Add(startNode);
+
+            while (openSet.Count > 0)
             {
-                if (openSet[i].fCost < currentNode.fCost ||
-                    openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
+                // This is equal to the first node in the open set
+                Node currentNode = openSet.RemoveFirst();
+                closedSet.Add(currentNode);
+
+                if (currentNode == targetNode)
                 {
-                    currentNode = openSet[i];
-                }
-            }
-
-            openSet.Remove(currentNode);
-            closedSet.Add(currentNode);
-
-            if (currentNode == targetNode)
-            {
-                RetracePath(startNode, targetNode);
-                return;
-            }
-
-            foreach (Node neighbour in graph.GetNeighbours(currentNode))
-            {
-                if (!neighbour.walkable || closedSet.Contains(neighbour))
-                {
-                    continue;
+                    // Stop stopwatch
+                    sw.Stop();
+                    print("Path found: " + sw.ElapsedMilliseconds + " ms");
+                    pathSuccess = true;
+                    break;
                 }
 
-                int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-                if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                foreach (Node neighbour in graph.GetNeighbours(currentNode))
                 {
-                    neighbour.gCost = newMovementCostToNeighbour;
-                    neighbour.hCost = GetDistance(neighbour, targetNode);
-                    neighbour.parent = currentNode;
+                    if (!neighbour.walkable || closedSet.Contains(neighbour))
+                    {
+                        continue;
+                    }
 
-                    if (!openSet.Contains(neighbour))
-                        openSet.Add(neighbour);
+                    int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour)
+                        + neighbour.movementPenalty;
+                    if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                    {
+                        neighbour.gCost = newMovementCostToNeighbour;
+                        neighbour.hCost = GetDistance(neighbour, targetNode);
+                        neighbour.parent = currentNode;
+
+                        if (!openSet.Contains(neighbour))
+                            openSet.Add(neighbour);
+                        else
+                        {
+                            openSet.UpdateItem(neighbour);
+                        }
+                    }
                 }
             }
-        } 
+        }
+        // wait one frame before returning
+        yield return null;
+        if (pathSuccess)
+        {
+            waypoints = RetracePath(startNode, targetNode);
+        }
+        requestManager.FinishedProcessingPath(waypoints, pathSuccess);
+        
     }
-    void RetracePath(Node startNode, Node endNode)
+    Vector3[] RetracePath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
         Node currentNode = endNode;
@@ -78,9 +103,32 @@ public class Pathfinding : MonoBehaviour
             path.Add(currentNode);
             currentNode = currentNode.parent;
         }
-        path.Reverse();
-        
-        graph.path = path;
+
+        Vector3[] waypoints = SimplyfyPath(path);
+        Array.Reverse(waypoints);
+        return waypoints;
+    }
+
+    Vector3[] SimplyfyPath(List<Node> path)
+    {
+        // Store path of the nodes used to get to location
+        List<Vector3> waypoints = new List<Vector3>();
+        // Store direction 
+        Vector2 directionOld = Vector2.zero;
+
+        for (int i = 1; i < path.Count; i++)
+        {
+            Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
+            // If this is true then we know the path has changed direction
+            if (directionNew != directionOld)
+            {
+                waypoints.Add(path[i-1].worldPosition);
+            }
+
+            directionOld = directionNew;
+        }
+
+        return waypoints.ToArray();
     }
 
     int GetDistance(Node NodeA, Node NodeB)
