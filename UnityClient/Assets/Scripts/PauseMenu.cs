@@ -7,14 +7,15 @@ public class PauseMenu : MonoBehaviour
 
     private bool GamePaused = false; /*Declare GamePaused variable, initially set to false*/
 
-    public GameObject pauseMenuUI;
+    [SerializeField]
+    private GameObject pauseMenuUI;
 
     // Update is called once per frame
     private void Update()
     {
 
-        if (!Input.GetKeyDown(KeyCode.Escape))
-        {
+        if (Input.GetKeyDown(KeyCode.Escape)) return;
+
             if (GamePaused)
             {
                 Pause();
@@ -23,7 +24,6 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-        }
     }
 
     public void Resume()
