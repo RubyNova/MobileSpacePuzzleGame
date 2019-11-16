@@ -5,23 +5,23 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
 
-    public static bool GamePaused = false; /*Declare GamePaused variable, initially set to false*/
+    private bool GamePaused = false; /*Declare GamePaused variable, initially set to false*/
 
     public GameObject pauseMenuUI;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!Input.GetKeyDown(KeyCode.Escape))
         {
             if (GamePaused)
             {
-                Resume();
+                Pause();
             }
             else
             {
-                Pause();
+                Resume();
             }
         }
     }

@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1716660020}
+      - m_Target: {fileID: 56619860}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 56619859}
   - component: {fileID: 56619858}
   - component: {fileID: 56619857}
+  - component: {fileID: 56619860}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -365,6 +366,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &56619860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56619855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2327508bba52dcf47b786098c221155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1389518984}
 --- !u!1 &275492082
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +858,6 @@ GameObject:
   - component: {fileID: 1716660019}
   - component: {fileID: 1716660018}
   - component: {fileID: 1716660017}
-  - component: {fileID: 1716660020}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -915,7 +928,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1716660020}
+      - m_Target: {fileID: 56619860}
         m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
@@ -924,7 +937,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1716660015}
         m_MethodName: SetActive
@@ -977,19 +990,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716660015}
   m_CullTransparentMesh: 0
---- !u!114 &1716660020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716660015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2327508bba52dcf47b786098c221155a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1389518984}
 --- !u!1 &1999523520
 GameObject:
   m_ObjectHideFlags: 0
