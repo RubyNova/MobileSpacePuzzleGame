@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenuUI;
 
-    [SerializeField]
+
     private void Resume()
     {
         pauseMenuUI.SetActive(false); /*Disable pause menu UI*/
@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
         GamePaused = false;
     }
 
-    [SerializeField]
+
     private void Pause()
     {
         pauseMenuUI.SetActive(true); /*Enable pause menu UI*/
