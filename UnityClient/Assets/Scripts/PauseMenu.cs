@@ -10,30 +10,16 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenuUI;
 
-    // Update is called once per frame
-    private void Update()
-    {
-
-        if (Input.touchCount > 0) return;
-
-            if (GamePaused)
-            {
-                Pause();
-            }
-            else
-            {
-                Resume();
-            }
-    }
-
-    public void Resume()
+    [SerializeField]
+    private void Resume()
     {
         pauseMenuUI.SetActive(false); /*Disable pause menu UI*/
         Time.timeScale = 1f; /*Set time in game to stop*/
         GamePaused = false;
     }
 
-    public void Pause()
+    [SerializeField]
+    private void Pause()
     {
         pauseMenuUI.SetActive(true); /*Enable pause menu UI*/
         Time.timeScale = 0f; /*Set time in game to stop*/
