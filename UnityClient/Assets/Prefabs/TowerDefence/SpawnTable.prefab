@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8310680573321974568}
   - component: {fileID: 8350883412566719746}
   - component: {fileID: 8287546488288585183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,3 +109,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.47428176, g: 0.9716981, b: 0.3987629, a: 0}
   positionOffSet: {x: 0, y: 1.7, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0}

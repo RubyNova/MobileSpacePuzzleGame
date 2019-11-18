@@ -9,8 +9,11 @@ public class Unit : MonoBehaviour
     Vector3[] path;
     int targetIndex;
 
+    private GameObject targetP;
     void Start()
     {
+        targetP = GameObject.FindWithTag("Target");
+        target = targetP.transform;
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
     }
 
