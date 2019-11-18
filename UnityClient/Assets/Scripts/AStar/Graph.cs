@@ -227,7 +227,7 @@ public class Graph : MonoBehaviour
                     
                     // If walkable set node to Gizmos current colour, otherwise set it to red
                     Gizmos.color = (n.walkable) ? Gizmos.color : Color.red;
-                    Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter));
+                    Gizmos.DrawCube(n.worldPosition, new Vector3(0.3f,0.3f,0.3f ) * (nodeDiameter));
                 }
             }
     }
