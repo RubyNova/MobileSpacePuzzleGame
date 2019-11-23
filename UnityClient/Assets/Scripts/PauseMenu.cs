@@ -5,25 +5,25 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
 
-    private bool GamePaused = false; /*Declare GamePaused variable, initially set to false*/
+    private bool _gamePaused = false; /*Declare GamePaused variable, initially set to false*/
 
     [SerializeField]
-    private GameObject pauseMenuUI;
+    private GameObject _pauseMenuUI;
 
 
     private void Resume()
     {
-        pauseMenuUI.SetActive(false); /*Disable pause menu UI*/
+        _pauseMenuUI.SetActive(false); /*Disable pause menu UI*/
         Time.timeScale = 1f; /*Set time in game to stop*/
-        GamePaused = false;
+        _gamePaused = false;
     }
 
 
     private void Pause()
     {
-        pauseMenuUI.SetActive(true); /*Enable pause menu UI*/
+        _pauseMenuUI.SetActive(true); /*Enable pause menu UI*/
         Time.timeScale = 0f; /*Set time in game to stop*/
-        GamePaused = true;
+        _gamePaused = true;
     }
 
 }
