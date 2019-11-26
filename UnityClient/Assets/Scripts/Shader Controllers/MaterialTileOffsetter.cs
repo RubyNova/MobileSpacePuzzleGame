@@ -11,6 +11,9 @@ public class MaterialTileOffsetter : MonoBehaviour
 
     [SerializeField] 
     private Vector2 _threshold;
+
+    [SerializeField]
+    private float _offsetSpeed = 0.5f;
     
     private Vector2 _initialOffset;
 
@@ -24,7 +27,7 @@ public class MaterialTileOffsetter : MonoBehaviour
         }
         else
         {
-            _target.mainTextureOffset += new Vector2(Time.deltaTime, Time.deltaTime);
+            _target.mainTextureOffset += new Vector2(Time.deltaTime, Time.deltaTime) * _offsetSpeed;
         }
 
     }
