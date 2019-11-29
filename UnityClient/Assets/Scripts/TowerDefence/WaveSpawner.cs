@@ -8,50 +8,76 @@ using Random = System.Random;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    public static int EnemiesAlive = 0;
+    
+    public Wave[] waves;
 
     public Transform[] spawnPoints;
 
     public float timeBetweenWaves = 5f;
-    private float initialCountdown = 2f;
+    private float countdown = 2f;
 
     public Text waveCountdownText;
+    public Text enemiesRemaining;
 
-    private int waveIndex = 1;
+    public GameManager gameManager;
+
+    private int waveIndex = 0;
 
     private void Update()
     {
-        if (initialCountdown <= 0f)
+        
+        enemiesRemaining.text = EnemiesAlive.ToString();
+        
+        if (EnemiesAlive > 0)
+        {
+            return;
+        }
+        
+        if (waveIndex == waves.Length)
+        {
+            gameManager.WinLevel();
+            this.enabled = false;
+        }
+
+        if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
-            initialCountdown = timeBetweenWaves;
+            countdown = timeBetweenWaves;
+            return;
         }
 
         // Reduce countdown by 1 every second
-        initialCountdown -= Time.deltaTime;
+        countdown -= Time.deltaTime;
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 
-        waveCountdownText.text = Math.Round(initialCountdown).ToString();
-
-        if (waveIndex == 4)
-        {
-            this.enabled = false;
-        }
+        waveCountdownText.text = string.Format("{0:00.00}", countdown);
+        
     }
 
     IEnumerator SpawnWave()
     {
-        waveIndex++;
-        for (int i = 0; i < waveIndex; i++)
+        PlayerStats.Rounds++;
+
+        Wave wave = waves[waveIndex];
+
+        EnemiesAlive = wave.count;
+
+        
+        
+        for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            
+            SpawnEnemy(wave.enemy);
+            yield return new WaitForSeconds(1f/ wave.rate);
         }
+        waveIndex++;
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject enemy)
     {
-         int spawnPointIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
-         
-         Instantiate(enemyPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        int spawnPointIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
+
+        Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
     }
 }
