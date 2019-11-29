@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     private GameObject _pauseMenuUI;
 
 
-    private void Resume()
+    public void Resume()
     {
         _pauseMenuUI.SetActive(false); /*Disable pause menu UI*/
         Time.timeScale = 1f; /*Set time in game to stop*/
@@ -19,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    private void Pause()
+    public void Pause()
     {
         _pauseMenuUI.SetActive(true); /*Enable pause menu UI*/
         Time.timeScale = 0f; /*Set time in game to stop*/
