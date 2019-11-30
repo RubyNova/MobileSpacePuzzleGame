@@ -1600,10 +1600,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1686198952, guid: e38b1683834973d47ba9ca74a0df8633, type: 3}
-      propertyPath: m_Name
-      value: Win Text
-      objectReference: {fileID: 0}
     - target: {fileID: 7576306203859166585, guid: e38b1683834973d47ba9ca74a0df8633,
         type: 3}
       propertyPath: m_LocalPosition.x
