@@ -6,27 +6,15 @@ using UnityEngine.UI;
 
 public class RoundsSurvived : MonoBehaviour
 {
-    public Text roundsText;
-
-    void OnEnable()
+    [SerializeField] Text roundsText;
+    int round = 0;
+    
+    void Update()
     {
-        StartCoroutine(AnimateText());
-    }
-
-    IEnumerator AnimateText()
-    {
-        roundsText.text = "0";
-        int round = 0;
-
-        yield return new WaitForSeconds(.7f);
-
-        while (round < PlayerStats.Rounds)
+        if (round < PlayerStats.Rounds)
         {
             round++;
-            roundsText.text = round.ToString();
-            
-            yield return new WaitForSeconds(.05f);
+            roundsText.text = "round " + round;
         }
-
     }
 }

@@ -5,19 +5,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float startSpeed = 10f;
+    [SerializeField] float startSpeed = 10f;
 
-    [HideInInspector] public float speed;
+    private float speed;
     
-    public float startHealth = 100;
+    [SerializeField] float startHealth = 100;
     private float health;
-
-    //public int worth = 50;
-
-    public GameObject deathEffect;
+    
+    [SerializeField] GameObject deathEffect;
 
     [Header("Unity Stuff")]
-    public Image healthBar;
+    [SerializeField] Image healthBar;
 
     private bool isDead = false;
 
