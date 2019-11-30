@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 8310680573321974568}
   - component: {fileID: 8350883412566719746}
   - component: {fileID: 8287546488288585183}
+<<<<<<< HEAD
   - component: {fileID: 4952687631405581736}
+=======
+>>>>>>> master
   m_Layer: 8
   m_Name: SpawnTable
   m_TagString: Untagged
@@ -111,6 +114,7 @@ MonoBehaviour:
   hoverColor: {r: 0.47428176, g: 0.9716981, b: 0.3987629, a: 0}
   positionOffSet: {x: 0, y: 1.7, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!65 &4952687631405581736
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +128,5 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1154852, y: 1.5625, z: 1.115485}
   m_Center: {x: 0, y: 0.78125, z: 0}
+=======
+>>>>>>> master
