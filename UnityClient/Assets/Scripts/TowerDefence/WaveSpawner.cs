@@ -10,24 +10,24 @@ public class WaveSpawner : MonoBehaviour
 {
     public static int EnemiesAlive = 0;
     
-    public Wave[] waves;
+    [SerializeField] Wave[] waves;
 
-    public Transform[] spawnPoints;
+    [SerializeField] Transform[] spawnPoints;
 
-    public float timeBetweenWaves = 5f;
+    [SerializeField] float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
-    public Text waveCountdownText;
-    public Text enemiesRemaining;
+    [SerializeField] Text waveCountdownText;
+    [SerializeField] Text enemiesRemaining;
 
-    public GameManager gameManager;
+    [SerializeField] GameManager gameManager;
 
     private int waveIndex = 0;
 
     private void Update()
     {
         
-        enemiesRemaining.text = EnemiesAlive.ToString();
+        enemiesRemaining.text = "Enemies Left : " + EnemiesAlive;
         
         if (EnemiesAlive > 0)
         {
@@ -61,15 +61,13 @@ public class WaveSpawner : MonoBehaviour
 
         Wave wave = waves[waveIndex];
 
-        EnemiesAlive = wave.count;
-
+        EnemiesAlive = wave.Count;
         
-        
-        for (int i = 0; i < wave.count; i++)
+        for (int i = 0; i < wave.Count; i++)
         {
             
-            SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(1f/ wave.rate);
+            SpawnEnemy(wave.Enemy);
+            yield return new WaitForSeconds(1f/ wave.Count);
         }
         waveIndex++;
     }
