@@ -9,5 +9,11 @@ public class GameManager : MonoBehaviour
     public void WinLevel()
     {
         completeLevelUI.SetActive(true);
+        gameComplete();
+    }
+
+    void gameComplete()
+    {
+        Time.timeScale = 0;
     }
 }
