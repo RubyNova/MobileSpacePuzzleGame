@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -10,11 +11,18 @@ public class Unit : MonoBehaviour
     int targetIndex;
 
     private GameObject targetP;
+
+    private WaveSpawner _ws;
     void Start()
     {
-        targetP = GameObject.FindWithTag("Target");
+        targetP = _ws.currentTarget;
         target = targetP.transform;
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+    }
+
+    public void Init(WaveSpawner ws)
+    {
+        _ws = ws;
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
