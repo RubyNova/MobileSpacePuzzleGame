@@ -12,7 +12,7 @@
         // ------------------------------------------------------------------
         // Extracts information for lightmapping, GI (emission, albedo, ...)
         // This pass it not used during regular rendering.
-            Pass
+/*            Pass
             {
                 Name "META"
                 Tags {"LightMode"="Meta"}
@@ -43,7 +43,7 @@
                
 
                 ENDCG
-            }
+            }*/
            
             Tags {"RenderType"="Opaque"}
             LOD 200
