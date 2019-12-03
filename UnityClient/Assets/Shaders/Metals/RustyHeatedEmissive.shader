@@ -12,7 +12,7 @@
         // ------------------------------------------------------------------
         // Extracts information for lightmapping, GI (emission, albedo, ...)
         // This pass it not used during regular rendering.
-            Pass
+/*            Pass
             {
                 Name "META"
                 Tags {"LightMode"="Meta"}
@@ -42,7 +42,7 @@
                 #pragma shader_feature _METALLICGLOSSMAP
                 #pragma shader_feature _DETAIL_MULX2
                 ENDCG
-            }
+            }*/
            
             Tags {"RenderType"="Opaque"}
             LOD 200
