@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PostProcessing
 {
-    public class CameraEffect : MonoBehaviour
+    public class CameraEffectController : MonoBehaviour
     {
         [SerializeField]
         private Material _effectMaterial;
