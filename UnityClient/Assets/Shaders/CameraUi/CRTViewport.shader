@@ -7,6 +7,7 @@
         _WaveMultiplier ("Wave Multiplier", int) = 300
         _HighTintColour ("High tint colour", color) = (1,1,1,1)
         _LowTintColour ("Low tint colour", color) = (0,0,0,0)
+        _EdgeTintColour ("Edge tint colour", color) = (0,0,0,0)
     }
     SubShader
     {
@@ -46,13 +47,17 @@
             int _WaveMultiplier;
             fixed4 _HighTintColour;
             fixed4 _LowTintColour;
+            fixed4 _EdgeTintColour;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                // just invert the colors
-                float lerpWeight = clamp(sin(abs(i.uv.y) * _WaveMultiplier), 0.0, 1.0); //* _Transparency;
-                col.rgb = col.rgb * lerp(_HighTintColour, _LowTintColour, lerpWeight);
+                float lerpWeight = clamp(sin(abs(i.uv.y) * _WaveMultiplier), 0.0, 1.0);
+                float crtScreenEdgeMultiplier = clamp(lerp(10, 0, abs(i.uv.x - 0.5) * 2), 0.0, 1.0);
+                fixed4 edgeTintColourAdjusted = _EdgeTintColour;
+                edgeTintColourAdjusted = edgeTintColourAdjusted * crtScreenEdgeMultiplier;
+                col.rgb = (col.rgb * lerp(_HighTintColour, _LowTintColour, lerpWeight));
+                col = col * edgeTintColourAdjusted;
                 return col;
             }
             ENDCG
