@@ -2,23 +2,23 @@
 
 public class Turret : MonoBehaviour
 {
-    private Transform target;
+    private Transform _target;
     
     [Header("Attributes")]
     
-    public float range = 15f;
-    public float fireRate = 1f;
-    private float fireCountDown = 1f;
-    private float turnSpeed = 10f;
+    [SerializeField] float range = 15f;
+    [SerializeField] float fireRate = 1f;
+    private float _fireCountDown = 1f;
+    private float _turnSpeed = 10f;
     
     [Header("Unity Setup fields")]
 
-    public string enemyTag = "Enemy";
-    public Transform partToRotate;
-    public Transform turretGun;
+    [SerializeField] string enemyTag = "Enemy";
+    [SerializeField] Transform partToRotate;
+    [SerializeField] Transform turretGun;
 
-    public GameObject bulletPrefab;
-    public Transform firePoint;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform firePoint;
 
     // Start is called before the first frame update
     void Start()
@@ -50,40 +50,40 @@ public class Turret : MonoBehaviour
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            target = nearestEnemy.transform;
+            _target = nearestEnemy.transform;
         }
         else
         {
-            target = null;
+            _target = null;
         }
     }
 
     public void Update()
     {
-        if (target == null)
+        if (_target == null)
         {
             return;
         }
         // Target Lock on
         // Getting the direction in which the turret should look : n(end) - n(start) = dir
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = _target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
 
         // The Lerp smoothes the transition from current rotation to target rotation over time * turnSpeed of turret
         // Convert Quaternion in euler angles | to rotate around the y axis only it needs to be specified
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * _turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
         
         //Draw Ray from turret to enemy (Purely visualisation)
         Debug.DrawRay(turretGun.position, dir, Color.green);
 
-        if (fireCountDown <= 0)
+        if (_fireCountDown <= 0)
         {
             Shoot();
-            fireCountDown = 1f / fireRate;
+            _fireCountDown = 1f / fireRate;
         }
 
-        fireCountDown -= Time.deltaTime;
+        _fireCountDown -= Time.deltaTime;
     }
 
     void Shoot()
@@ -95,7 +95,7 @@ public class Turret : MonoBehaviour
         if (bullet != null)
         {
             // Call the seek method in the bullet script along with the targets position
-            bullet.Seek(target);
+            bullet.Seek(_target);
         }
 
     }
