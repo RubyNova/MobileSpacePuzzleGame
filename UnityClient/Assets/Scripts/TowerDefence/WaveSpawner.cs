@@ -72,7 +72,7 @@ public class WaveSpawner : MonoBehaviour
         _waveCountdownText.text = string.Format("{0:00.00}", _countdown);
     }
 
-    IEnumerator SpawnWave()
+    private IEnumerator SpawnWave()
     {
 
         Wave wave = _waves[_waveIndex];

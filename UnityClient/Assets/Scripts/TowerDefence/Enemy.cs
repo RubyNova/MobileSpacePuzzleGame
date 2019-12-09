@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour
 {
-    private float health;
+    private float _health;
     private WaveSpawner _controllingSpawner;
     private bool _isDead; 
    
@@ -24,22 +24,22 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        health = _startHealth;
+        _health = _startHealth;
     }
 
     public void TakeDamage (float amount)
     {
-        health -= amount;
+        _health -= amount;
 
-        _healthBar.fillAmount = health / _startHealth;
+        _healthBar.fillAmount = _health / _startHealth;
 
-        if (health <= 0 && !_isDead)
+        if (_health <= 0 && !_isDead)
         {
             Die();
         }
     }
 
-    void Die ()
+    private void Die ()
     {
         _isDead = true;
 
