@@ -42,8 +42,8 @@ public class Bullet : MonoBehaviour
     private void HitTarget()
     {
         // Destroy bullet on hit
-        GameObject _effectIns = (GameObject)Instantiate(_impactEffect, transform.position, transform.rotation);
-        Destroy(_effectIns, 0.8f);
+        GameObject effectIns = Instantiate(_impactEffect, transform.position, transform.rotation);
+        Destroy(effectIns, 0.8f);
        
         Damage(_target);
         Destroy(gameObject);
