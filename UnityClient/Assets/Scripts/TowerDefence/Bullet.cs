@@ -1,30 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Bullet : MonoBehaviour
 {
-    private Transform target;
+    private Transform _target;
 
-    public float speed = 70f;
-    public int damage = 50;
-    public GameObject impactEffect;
+    [FormerlySerializedAs("speed")] [SerializeField] private float _speed = 70f;
+    [FormerlySerializedAs("damage")] [SerializeField] private int _damage = 50;
+    [FormerlySerializedAs("impactEffect")] [SerializeField] private GameObject _impactEffect;
     
-    public void Seek(Transform _target)
+    public void Seek(Transform target)
     {
-        target = _target;
+        _target = target;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (target == null)
+        if (_target == null)
         {
             // Can be a delay to destroy gameObject so return helps wait
             Destroy(obj: gameObject);
             return;
         }
 
-        Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        Vector3 dir = _target.position - transform.position;
+        float distanceThisFrame = _speed * Time.deltaTime;
         
         // If the length of the dir vector <= distanceThisFrame then it has hit something
         if (dir.magnitude <= distanceThisFrame)
@@ -38,23 +39,23 @@ public class Bullet : MonoBehaviour
         
     }
 
-    void HitTarget()
+    private void HitTarget()
     {
         // Destroy bullet on hit
-        GameObject _effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(_effectIns, 0.8f);
+        GameObject effectIns = Instantiate(_impactEffect, transform.position, transform.rotation);
+        Destroy(effectIns, 0.8f);
        
-        Damage(target);
+        Damage(_target);
         Destroy(gameObject);
     }
     
-    void Damage (Transform enemy)
+    private void Damage (Transform enemy)
     {
         Enemy e = enemy.GetComponent<Enemy>();
 
         if (e != null)
         {
-            e.TakeDamage(damage);
+            e.TakeDamage(_damage);
         }
     }
 }

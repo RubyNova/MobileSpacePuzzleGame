@@ -2,22 +2,29 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Unit : MonoBehaviour
 {
-    public Transform target;
-    public float speed = 5;
-    Vector3[] path;
-    int targetIndex;
-
-    private GameObject targetP;
+    private Transform _target;
+    private float _speed;
+    private Vector3[] _path;
+    private int _targetIndex;
+    private GameObject _targetP;
+    private Coroutine _followPathRoutine;
 
     private WaveSpawner _ws;
-    void Start()
+    private void Start()
     {
-        targetP = _ws.currentTarget;
-        target = targetP.transform;
-        PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+        //Speed
+        GameObject enemyInstance = GameObject.FindGameObjectWithTag("Enemy");
+        Enemy enemy = enemyInstance.GetComponent<Enemy>();
+        _speed = enemy.speed;
+        
+        
+        _targetP = _ws.CurrentTarget;
+        _target = _targetP.transform;
+        PathRequestManager.RequestPath(transform.position,_target.position, OnPathFound);
     }
 
     public void Init(WaveSpawner ws)
@@ -29,47 +36,52 @@ public class Unit : MonoBehaviour
     {
         if (pathSuccessful)
         {
-            path = newPath;
-            targetIndex = 0;
-            StopCoroutine("FollowPath");
-            StartCoroutine("FollowPath");
+            _path = newPath;
+            _targetIndex = 0;
+
+            if (_followPathRoutine != null)
+            {
+                StopCoroutine(_followPathRoutine);
+            }
+
+            _followPathRoutine = StartCoroutine(FollowPath());
         }
     }
 
-    IEnumerator FollowPath()
+    private IEnumerator FollowPath()
     {
-        Vector3 currentWaypoint = path[0];
+        Vector3 currentWaypoint = _path[0];
 
         while (true)
         {
             if (transform.position == currentWaypoint)
             {
-                targetIndex++;
-                if (targetIndex >= path.Length)
+                _targetIndex++;
+                if (_targetIndex >= _path.Length)
                 {
                     // yield is how you exit out a coroutine;
                     yield break;
                 }
 
-                currentWaypoint = path[targetIndex];
+                currentWaypoint = _path[_targetIndex];
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, _speed * Time.deltaTime);
             yield return null;
         }
     }
     
     public void OnDrawGizmos() {
-        if (path != null) {
-            for (int i = targetIndex; i < path.Length; i ++) {
+        if (_path != null) {
+            for (int i = _targetIndex; i < _path.Length; i ++) {
                 Gizmos.color = Color.black;
-                Gizmos.DrawCube(path[i], new Vector3(0.3f, 0.3f,0.3f));
+                Gizmos.DrawCube(_path[i], new Vector3(0.3f, 0.3f,0.3f));
 
-                if (i == targetIndex) {
-                    Gizmos.DrawLine(transform.position, path[i]);
+                if (i == _targetIndex) {
+                    Gizmos.DrawLine(transform.position, _path[i]);
                 }
                 else {
-                    Gizmos.DrawLine(path[i-1],path[i]);
+                    Gizmos.DrawLine(_path[i-1],_path[i]);
                 }
             }
         }

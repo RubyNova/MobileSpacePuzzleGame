@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject completeLevelUI;
+    [FormerlySerializedAs("completeLevelUI")] [SerializeField] private GameObject _completeLevelUI;
 
     public void WinLevel()
     {
-        completeLevelUI.SetActive(true);
-        gameComplete();
+        _completeLevelUI.SetActive(true);
+        GameComplete();
     }
 
-    void gameComplete()
+    private void GameComplete()
     {
         Time.timeScale = 0;
     }
