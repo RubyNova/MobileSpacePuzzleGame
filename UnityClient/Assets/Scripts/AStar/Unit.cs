@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     private Vector3[] _path;
     private int _targetIndex;
     private GameObject _targetP;
+    private Coroutine _followPathRoutine;
 
     private WaveSpawner _ws;
     private void Start()
@@ -37,12 +38,17 @@ public class Unit : MonoBehaviour
         {
             _path = newPath;
             _targetIndex = 0;
-            StopCoroutine("FollowPath");
-            StartCoroutine("FollowPath");
+
+            if (_followPathRoutine != null)
+            {
+                StopCoroutine(_followPathRoutine);
+            }
+
+            _followPathRoutine = StartCoroutine(FollowPath());
         }
     }
 
-    IEnumerator FollowPath()
+    private IEnumerator FollowPath()
     {
         Vector3 currentWaypoint = _path[0];
 
