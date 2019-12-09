@@ -53,9 +53,10 @@
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 float lerpWeight = clamp(sin(abs(i.uv.y) * _WaveMultiplier), 0.0, 1.0);
-                float crtScreenEdgeMultiplier = clamp(lerp(10, 0, abs(i.uv.x - 0.5) * 2), 0.0, 1.0);
+                float crtScreenEdgeMultiplierX = clamp(lerp(7, 0, abs(i.uv.x - 0.5) * 2), 0.0, 1.0);
+                float crtScreenEdgeMultiplierY = clamp(lerp(5, 0, abs(i.uv.y - 0.5) * 2), 0.0, 1.0);
                 fixed4 edgeTintColourAdjusted = _EdgeTintColour;
-                edgeTintColourAdjusted = edgeTintColourAdjusted * crtScreenEdgeMultiplier;
+                edgeTintColourAdjusted = edgeTintColourAdjusted * crtScreenEdgeMultiplierX * crtScreenEdgeMultiplierY;
                 col.rgb = (col.rgb * lerp(_HighTintColour, _LowTintColour, lerpWeight));
                 col = col * edgeTintColourAdjusted;
                 return col;
