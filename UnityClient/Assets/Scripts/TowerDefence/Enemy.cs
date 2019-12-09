@@ -13,17 +13,18 @@ public class Enemy : MonoBehaviour
     [Header("Attributes")]
     [FormerlySerializedAs("start Health")] [SerializeField] private float _startHealth = 100;
     [FormerlySerializedAs("Movement Speed")] [SerializeField] private float _speed = 100;
-    
+
     [Header("Unity Stuff")]
     [FormerlySerializedAs("Health Bar")] [SerializeField] private Image _healthBar;
     [FormerlySerializedAs("Death Effect")] [SerializeField] private GameObject _deathEffect;
     
     public void Init(WaveSpawner controllingSpawner) => _controllingSpawner = controllingSpawner;
+    
+    public float speed => _speed;
 
     void Start()
     {
         health = _startHealth;
-
     }
 
     public void TakeDamage (float amount)

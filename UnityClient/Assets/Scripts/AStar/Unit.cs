@@ -7,15 +7,21 @@ using UnityEngine.Serialization;
 public class Unit : MonoBehaviour
 {
     private Transform target;
-    [FormerlySerializedAs("speed")] [SerializeField] private float _speed = 5;
+     private float _speed;
     Vector3[] path;
-    private int targetIndex;
+    int targetIndex;
 
     private GameObject targetP;
 
     private WaveSpawner _ws;
     void Start()
     {
+        //Speed
+        GameObject enemyInstance = GameObject.FindGameObjectWithTag("Enemy");
+        Enemy enemy = enemyInstance.GetComponent<Enemy>();
+        _speed = enemy.speed;
+        
+        
         targetP = _ws.CurrentTarget;
         target = targetP.transform;
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
