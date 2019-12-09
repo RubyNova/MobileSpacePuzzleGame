@@ -2,28 +2,28 @@
 
 public class Bullet : MonoBehaviour
 {
-    private Transform target;
+    private Transform _target;
 
-    public float speed = 70f;
-    public int damage = 50;
-    public GameObject impactEffect;
+    [SerializeField] float speed = 70f;
+    [SerializeField] int damage = 50;
+    [SerializeField] GameObject impactEffect;
     
     public void Seek(Transform _target)
     {
-        target = _target;
+        this._target = _target;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        if (_target == null)
         {
             // Can be a delay to destroy gameObject so return helps wait
             Destroy(obj: gameObject);
             return;
         }
 
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = _target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
         
         // If the length of the dir vector <= distanceThisFrame then it has hit something
@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
         GameObject _effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(_effectIns, 0.8f);
        
-        Damage(target);
+        Damage(_target);
         Destroy(gameObject);
     }
     
