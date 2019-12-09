@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (_target == null)
         {
@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
         
     }
 
-    void HitTarget()
+    private void HitTarget()
     {
         // Destroy bullet on hit
         GameObject _effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
@@ -49,7 +49,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
     
-    void Damage (Transform enemy)
+    private void Damage (Transform enemy)
     {
         Enemy e = enemy.GetComponent<Enemy>();
 
