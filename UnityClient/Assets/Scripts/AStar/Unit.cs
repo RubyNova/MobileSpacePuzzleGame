@@ -6,15 +6,14 @@ using UnityEngine.Serialization;
 
 public class Unit : MonoBehaviour
 {
-    private Transform target;
-     private float _speed;
-    Vector3[] path;
-    int targetIndex;
-
-    private GameObject targetP;
+    private Transform _target;
+    private float _speed;
+    private Vector3[] _path;
+    private int _targetIndex;
+    private GameObject _targetP;
 
     private WaveSpawner _ws;
-    void Start()
+    private void Start()
     {
         //Speed
         GameObject enemyInstance = GameObject.FindGameObjectWithTag("Enemy");
@@ -22,9 +21,9 @@ public class Unit : MonoBehaviour
         _speed = enemy.speed;
         
         
-        targetP = _ws.CurrentTarget;
-        target = targetP.transform;
-        PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+        _targetP = _ws.CurrentTarget;
+        _target = _targetP.transform;
+        PathRequestManager.RequestPath(transform.position,_target.position, OnPathFound);
     }
 
     public void Init(WaveSpawner ws)
@@ -36,8 +35,8 @@ public class Unit : MonoBehaviour
     {
         if (pathSuccessful)
         {
-            path = newPath;
-            targetIndex = 0;
+            _path = newPath;
+            _targetIndex = 0;
             StopCoroutine("FollowPath");
             StartCoroutine("FollowPath");
         }
@@ -45,20 +44,20 @@ public class Unit : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        Vector3 currentWaypoint = path[0];
+        Vector3 currentWaypoint = _path[0];
 
         while (true)
         {
             if (transform.position == currentWaypoint)
             {
-                targetIndex++;
-                if (targetIndex >= path.Length)
+                _targetIndex++;
+                if (_targetIndex >= _path.Length)
                 {
                     // yield is how you exit out a coroutine;
                     yield break;
                 }
 
-                currentWaypoint = path[targetIndex];
+                currentWaypoint = _path[_targetIndex];
             }
 
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, _speed * Time.deltaTime);
@@ -67,16 +66,16 @@ public class Unit : MonoBehaviour
     }
     
     public void OnDrawGizmos() {
-        if (path != null) {
-            for (int i = targetIndex; i < path.Length; i ++) {
+        if (_path != null) {
+            for (int i = _targetIndex; i < _path.Length; i ++) {
                 Gizmos.color = Color.black;
-                Gizmos.DrawCube(path[i], new Vector3(0.3f, 0.3f,0.3f));
+                Gizmos.DrawCube(_path[i], new Vector3(0.3f, 0.3f,0.3f));
 
-                if (i == targetIndex) {
-                    Gizmos.DrawLine(transform.position, path[i]);
+                if (i == _targetIndex) {
+                    Gizmos.DrawLine(transform.position, _path[i]);
                 }
                 else {
-                    Gizmos.DrawLine(path[i-1],path[i]);
+                    Gizmos.DrawLine(_path[i-1],_path[i]);
                 }
             }
         }

@@ -20,13 +20,13 @@ public class Turret : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     // Update is called once per frame
-    void UpdateTarget()
+    private void UpdateTarget()
     {
         // Search through marked enemies and attack the closest one, then if the closest one is in range then attack
         // Rather than do it every frame, it is run around 2 times a second saving processing power.
@@ -85,7 +85,7 @@ public class Turret : MonoBehaviour
         _fireCountDown -= Time.deltaTime;
     }
 
-    void Shoot()
+    private void Shoot()
     {
         // Instantiation of bullets and destruction on target. Cast returned GameObject into a GameObject to store instantiated objects.
         GameObject bulletGO = (GameObject)Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation);
