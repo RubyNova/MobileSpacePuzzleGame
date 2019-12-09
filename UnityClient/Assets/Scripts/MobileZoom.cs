@@ -13,7 +13,7 @@ public class MobileZoom : MonoBehaviour
     private const float YFov = 0.1f;
     private const float ZFov = 100f;
 
-    public void Update()
+    private void Update()
     {
         if (Input.touchCount < 2) return;
 
