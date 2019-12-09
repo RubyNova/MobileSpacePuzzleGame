@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     
     public float speed => _speed;
 
-    void Start()
+    private void Start()
     {
         _health = _startHealth;
     }

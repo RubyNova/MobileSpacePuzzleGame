@@ -18,7 +18,7 @@ public class Pad : MonoBehaviour
     private Renderer _rend;
     private Color _startColour;
 
-    void Start()
+    private void Start()
     {
         _rend = GetComponent<Renderer>();
         _startColour = _rend.material.color;
@@ -38,7 +38,7 @@ public class Pad : MonoBehaviour
         _turret = (GameObject)Instantiate(turretToBuild,transform.position + _positionOffSet, transform.rotation);
     }
 
-    void OnMouseEnter()
+    private void OnMouseEnter()
     {
         //Needs to be implemented onto phone
         _rend.material.color = _hoverColor;

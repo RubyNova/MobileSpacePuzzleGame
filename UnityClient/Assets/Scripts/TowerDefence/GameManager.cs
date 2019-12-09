@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     public void WinLevel()
     {
         _completeLevelUI.SetActive(true);
-        gameComplete();
+        GameComplete();
     }
 
-    void gameComplete()
+    private void GameComplete()
     {
         Time.timeScale = 0;
     }
