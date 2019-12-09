@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject completeLevelUI;
+    [FormerlySerializedAs("completeLevelUI")] [SerializeField] private GameObject _completeLevelUI;
 
     public void WinLevel()
     {
-        completeLevelUI.SetActive(true);
+        _completeLevelUI.SetActive(true);
         gameComplete();
     }
 

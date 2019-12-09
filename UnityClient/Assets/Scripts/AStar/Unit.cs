@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Unit : MonoBehaviour
 {
-    public Transform target;
-    public float speed = 5;
+    private Transform target;
+    [FormerlySerializedAs("speed")] [SerializeField] private float _speed = 5;
     Vector3[] path;
-    int targetIndex;
+    private int targetIndex;
 
     private GameObject targetP;
 
     private WaveSpawner _ws;
     void Start()
     {
-        targetP = _ws.currentTarget;
+        targetP = _ws.CurrentTarget;
         target = targetP.transform;
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
     }
@@ -54,7 +55,7 @@ public class Unit : MonoBehaviour
                 currentWaypoint = path[targetIndex];
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, _speed * Time.deltaTime);
             yield return null;
         }
     }

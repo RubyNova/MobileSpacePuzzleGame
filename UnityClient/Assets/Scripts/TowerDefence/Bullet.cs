@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Bullet : MonoBehaviour
 {
     private Transform _target;
 
-    [SerializeField] float speed = 70f;
-    [SerializeField] int damage = 50;
-    [SerializeField] GameObject impactEffect;
+    [FormerlySerializedAs("speed")] [SerializeField] private float _speed = 70f;
+    [FormerlySerializedAs("damage")] [SerializeField] private int _damage = 50;
+    [FormerlySerializedAs("impactEffect")] [SerializeField] private GameObject _impactEffect;
     
     public void Seek(Transform _target)
     {
@@ -24,7 +25,7 @@ public class Bullet : MonoBehaviour
         }
 
         Vector3 dir = _target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = _speed * Time.deltaTime;
         
         // If the length of the dir vector <= distanceThisFrame then it has hit something
         if (dir.magnitude <= distanceThisFrame)
@@ -41,7 +42,7 @@ public class Bullet : MonoBehaviour
     void HitTarget()
     {
         // Destroy bullet on hit
-        GameObject _effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+        GameObject _effectIns = (GameObject)Instantiate(_impactEffect, transform.position, transform.rotation);
         Destroy(_effectIns, 0.8f);
        
         Damage(_target);
@@ -54,7 +55,7 @@ public class Bullet : MonoBehaviour
 
         if (e != null)
         {
-            e.TakeDamage(damage);
+            e.TakeDamage(_damage);
         }
     }
 }

@@ -1,14 +1,15 @@
 ﻿
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Pad : MonoBehaviour
 {
     // Handle placement of turrets and user feedback, as well as if the player
     // has pressed used the pad / is it free or not?
-    [SerializeField] Color hoverColor;
-    [SerializeField] Vector3 positionOffSet;
-    [SerializeField] Vector3 rotationOffset;
+    [FormerlySerializedAs("hoverColor")] [SerializeField] private Color _hoverColor;
+    [FormerlySerializedAs("positionOffSet")] [SerializeField] private Vector3 _positionOffSet;
+    [FormerlySerializedAs("rotationOffset")] [SerializeField] private Vector3 _rotationOffset;
     
     //Check if turret is placed or not
     private GameObject _turret;
@@ -34,13 +35,13 @@ public class Pad : MonoBehaviour
         
         // Build a turret
         GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-        _turret = (GameObject)Instantiate(turretToBuild,transform.position + positionOffSet, transform.rotation);
+        _turret = (GameObject)Instantiate(turretToBuild,transform.position + _positionOffSet, transform.rotation);
     }
 
     void OnMouseEnter()
     {
         //Needs to be implemented onto phone
-        _rend.material.color = hoverColor;
+        _rend.material.color = _hoverColor;
     }
 
     private void OnMouseExit()

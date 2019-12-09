@@ -4,38 +4,39 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = System.Random;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public static int EnemiesAlive = 0; // This one is tricky to fix
+    public int EnemiesAlive { get; set; }
+    public GameObject CurrentTarget { get; private set; }
     
-    [SerializeField] Wave[] waves;
-    [SerializeField] Instance[] instances;
-
-    [SerializeField] float timeBetweenWaves = 5f;
     private float _countdown = 2f;
-
-    [SerializeField] Text waveCountdownText;
-    [SerializeField] Text enemiesRemaining;
-    [SerializeField] Text currentInstance;
-
+    
     private Transform _currentSpawn;
-    public GameObject currentTarget; // Not sure how to fix this
-
-    [SerializeField] GameManager gameManager;
-
-    // Wave Index | Counter
+    // Index Counters
     private int _waveIndex = 0;
-    // Instance Index | Counter
     private int _instanceIndex = 0;
     
+    [Header("Wave Attributes")]
+    [FormerlySerializedAs("timeBetweenWaves")] [SerializeField] private float _timeBetweenWaves = 5f;
+    [FormerlySerializedAs("waves")] [SerializeField] private Wave[] _waves;
+    [Header("Instance Attributes")]
+    [FormerlySerializedAs("instances")] [SerializeField] private Instance[] _instances;
+    
+    [Header("UI Visualisation")]
+    [FormerlySerializedAs("waveCountdownText")] [SerializeField] private Text _waveCountdownText;
+    [FormerlySerializedAs("enemiesRemaining")] [SerializeField] private Text _enemiesRemaining;
+    [FormerlySerializedAs("currentInstance")] [SerializeField] private Text _currentInstance;
+
+    [Header("GameManager Script")]
+    [FormerlySerializedAs("gameManager")] [SerializeField] private GameManager _gameManager;
 
     private void Update()
     {
-
         //Display the enemies left in a text element
-        enemiesRemaining.text = "Enemies Left : " + EnemiesAlive;
+        _enemiesRemaining.text = "Enemies Left : " + EnemiesAlive;
 
         // If the enemies are all dead then spawn the next wave 
         if (EnemiesAlive > 0)
@@ -44,15 +45,15 @@ public class WaveSpawner : MonoBehaviour
         }
         
         // If the last wave has been reached and the last level instance has been played through
-        if (_waveIndex == waves.Length)
+        if (_waveIndex == _waves.Length)
         {
             // Next instance
             _instanceIndex++;
             _waveIndex = 0;
             
-            if (_instanceIndex == instances.Length)
+            if (_instanceIndex == _instances.Length)
             {
-                gameManager.WinLevel();
+                _gameManager.WinLevel();
             }
         }
         
@@ -60,7 +61,7 @@ public class WaveSpawner : MonoBehaviour
         if (_countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
-            _countdown = timeBetweenWaves;
+            _countdown = _timeBetweenWaves;
             return;
         }
 
@@ -68,21 +69,21 @@ public class WaveSpawner : MonoBehaviour
         _countdown -= Time.deltaTime;
         _countdown = Mathf.Clamp(_countdown, 0f, Mathf.Infinity);
 
-        waveCountdownText.text = string.Format("{0:00.00}", _countdown);
+        _waveCountdownText.text = string.Format("{0:00.00}", _countdown);
     }
 
     IEnumerator SpawnWave()
     {
 
-        Wave wave = waves[_waveIndex];
+        Wave wave = _waves[_waveIndex];
 
         EnemiesAlive = wave.Count;
         
-        Instance instant = instances[_instanceIndex];
+        Instance instant = _instances[_instanceIndex];
         
         _currentSpawn = instant.SpawnPoint;
-        currentTarget = instant.Target;
-        currentInstance.text = instant.InstanceName;
+        CurrentTarget = instant.Target;
+        _currentInstance.text = instant.InstanceName;
         
         for (int i = 0; i < wave.Count; i++)
         {
@@ -95,6 +96,8 @@ public class WaveSpawner : MonoBehaviour
 
     public void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemy, _currentSpawn.position, _currentSpawn.rotation).GetComponent<Unit>().Init(this);
+        var enemyUnitClone = Instantiate(enemy, _currentSpawn.position, _currentSpawn.rotation);
+        enemyUnitClone.GetComponent<Unit>().Init(this);
+        enemyUnitClone.GetComponent<Enemy>().Init(this);
     }
 }

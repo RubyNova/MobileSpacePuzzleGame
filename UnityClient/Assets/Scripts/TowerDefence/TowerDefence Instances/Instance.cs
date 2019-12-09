@@ -2,29 +2,30 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class Instance
 {
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] GameObject target;
-    [SerializeField] String instanceName;
+    [FormerlySerializedAs("spawnPoint")] [SerializeField] private Transform _spawnPoint;
+    [FormerlySerializedAs("target")] [SerializeField] private GameObject _target;
+    [FormerlySerializedAs("instanceName")] [SerializeField] private String _instanceName;
     
     public Transform SpawnPoint
     {
-        get => spawnPoint;
-        set => spawnPoint = value;
+        get => _spawnPoint;
+        set => _spawnPoint = value;
     }
 
     public GameObject Target
     {
-        get => target;
-        set => target = value;
+        get => _target;
+        set => _target = value;
     }
     
     public String InstanceName
     {
-        get => instanceName;
-        set => instanceName = value;
+        get => _instanceName;
+        set => _instanceName = value;
     }
 }
