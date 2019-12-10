@@ -1255,6 +1255,8 @@ GameObject:
   - component: {fileID: 2110656578}
   - component: {fileID: 2110656577}
   - component: {fileID: 2110656576}
+  - component: {fileID: 2110656579}
+  - component: {fileID: 2110656580}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1327,3 +1329,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2110656579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110656575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5087ac7f11fbf741a80456bdd96b905, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectMaterial: {fileID: 2100000, guid: 4422cff19c4beeb4ca796aaa0af9b128, type: 2}
+  _effectName: Base CRT
+--- !u!114 &2110656580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110656575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e399c1f9f3f45bf48ace806464cd1d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _arguments:
+  - _shaderArgumentName: _Offset
+    _minValue: 0
+    _maxValue: 1
+  _targetMaterial: {fileID: 2100000, guid: 4422cff19c4beeb4ca796aaa0af9b128, type: 2}
+  _speedModifier: 0.02
