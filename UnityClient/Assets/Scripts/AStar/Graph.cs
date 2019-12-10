@@ -202,11 +202,7 @@ public class Graph : MonoBehaviour
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
         float percentY = (worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y;
-
-/*        if (percentX > 1 || percentX < 0 || percentY > 1 || percentY < 0)
-        {
-            throw new Exception("this is the fucking problem");
-        }*/
+        
         
         // If the character is outside the grid, this stops invalid coordinates
         percentX = Mathf.Clamp01(percentX);

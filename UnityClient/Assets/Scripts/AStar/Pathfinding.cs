@@ -23,7 +23,7 @@ public class Pathfinding : MonoBehaviour
         StartCoroutine(FindPath(startPos, targetPos));
     }
 
-    IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
+    private IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
     {
         Debug.Log($"START: {startPos}, END: {targetPos}");
         // Stopwatch to see the performance gain through heap optimization
