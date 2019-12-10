@@ -27,7 +27,7 @@ namespace PostProcessing
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             foreach (var pair in _pushValues)
             {
@@ -41,7 +41,16 @@ namespace PostProcessing
                 _targetMaterial.SetFloat(pair.Key, pair.Value.CurrentState);
             }
         }
-    
+
+        private void OnApplicationQuit()
+        {
+            foreach (var argument in _pushValues)
+            {
+                _targetMaterial.SetFloat(argument.Key, argument.Value.ArgumentData.MinValue);
+            }
+        }
+
+
         [Serializable]
         public class ShaderFloatArgumentPair
         {
