@@ -36,7 +36,10 @@ public class WaveSpawner : MonoBehaviour
     private void Update()
     {
         //Display the enemies left in a text element
-        _enemiesRemaining.text = "Enemies Left : " + EnemiesAlive;
+        if (_enemiesRemaining != null)
+        {
+            _enemiesRemaining.text = "Enemies Left : " + EnemiesAlive;
+        }
 
         // If the enemies are all dead then spawn the next wave 
         if (EnemiesAlive > 0)
