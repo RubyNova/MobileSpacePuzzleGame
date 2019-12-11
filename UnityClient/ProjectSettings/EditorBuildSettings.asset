@@ -5,16 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Level 1.unity
-    guid: 9972f9a176044944d89b511d29792e18
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: 12bdc81049e5a1a45b573150fcaa7884
-  - enabled: 0
-    path: Assets/Scenes/Room1.unity
-    guid: d7423e22d65b17c429b23b2936fdaafa
   - enabled: 1
-    path: Assets/Scenes/WhiteBoxTest.unity
-    guid: 72370cef2e0228f4985fbc4b3b21eced
+    path: Assets/Scenes/Prototype_game.unity
+    guid: e4ce654888ca0754184d3a841f4b27ad
   m_configObjects: {}
