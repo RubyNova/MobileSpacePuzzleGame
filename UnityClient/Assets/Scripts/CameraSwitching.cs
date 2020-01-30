@@ -4,20 +4,19 @@ using System.Collections;
 public class CameraSwitching : MonoBehaviour
 {
     [SerializeField]
-    private Camera _mainCamera;
+    private GameObject _cameraChoice;
 
     [SerializeField]
-    private Camera _overheadCamera;
+    private Transform _allCameras;
 
-    public void ShowOverheadView()
+    public void ChangeCamera()
     {
-        _mainCamera.enabled = false;
-        _overheadCamera.enabled = true;
-    }
 
-    public void ShowFirstPersonView()
-    {
-        _mainCamera.enabled = true;
-        _overheadCamera.enabled = false;
+        foreach (Transform child in _allCameras.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        _cameraChoice.SetActive(true);
     }
 }
