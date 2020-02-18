@@ -8,10 +8,12 @@ public class GyroscopeCamera : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale != 0f)
+        if (Time.timeScale == 0f)
         {
-            transform.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
+            return;
         }
+
+        transform.Rotate(-Input.gyro.rotationRateUnbiased.x, -Input.gyro.rotationRateUnbiased.y, 0);
 
     }
 }
