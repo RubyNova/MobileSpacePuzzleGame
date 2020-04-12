@@ -5,8 +5,8 @@ using UnityEngine;
 public class Node : IHeapItem<Node> {
 	
     public bool walkable;
-    public Vector3 worldPosition;
-    public int gridX;
+    public Vector3 worldPosition; // Point in world the node represents 
+    public int gridX; 
     public int gridY;
     public int movementPenalty;
 

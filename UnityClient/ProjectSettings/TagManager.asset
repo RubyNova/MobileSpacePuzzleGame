@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Target
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Unwalkable
   - Poison
   - Road
-  - 
+  - Ground
   - 
   - 
   - 

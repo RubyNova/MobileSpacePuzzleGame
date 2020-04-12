@@ -4,13 +4,15 @@ using UnityEngine.Serialization;
 public class Bullet : MonoBehaviour
 {
     private Transform _target;
+    private string _identifier;
 
     [FormerlySerializedAs("speed")] [SerializeField] private float _speed = 70f;
-    [FormerlySerializedAs("damage")] [SerializeField] private int _damage = 50;
+    [FormerlySerializedAs("damage")] [SerializeField] private int _damage = 25;
     [FormerlySerializedAs("impactEffect")] [SerializeField] private GameObject _impactEffect;
     
-    public void Seek(Transform target)
+    public void Seek(Transform target, string targetName)
     {
+        _identifier = targetName;
         _target = target;
     }
 
@@ -49,13 +51,25 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
     
-    private void Damage (Transform enemy)
+    private void Damage (Transform bulletTarget)
     {
-        Enemy e = enemy.GetComponent<Enemy>();
-
-        if (e != null)
+        if (_identifier == "enemy" && bulletTarget != null)
         {
+            Unit e = bulletTarget.GetComponent<Unit>();
             e.TakeDamage(_damage);
+            
+        }
+        else if (_identifier == "turret" && bulletTarget != null)
+        {
+            Turret t = bulletTarget.GetComponent<Turret>();
+            if (bulletTarget != null)
+            {
+                t.TakeDamage(_damage);
+            }
+        }
+        else
+        {
+            print("The bulletTarget (Bullet)");
         }
     }
 }
