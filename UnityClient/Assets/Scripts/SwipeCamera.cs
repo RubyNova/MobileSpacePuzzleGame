@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SwipeCamera : MonoBehaviour
 {
-
-    private Touch _initTouch = new Touch();
+    private Touch _initTouch;
+    private void Awake()
+    {
+        _initTouch = new Touch();
+    }
 
     [SerializeField]
     private Camera _swipeCameraControl;
@@ -29,29 +32,32 @@ public class SwipeCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        foreach (Touch _touch in Input.touches)
+        if (Input.touchCount == 1)
         {
-            if (_touch.phase == TouchPhase.Began)
+            foreach (Touch _touch in Input.touches)
             {
-                _initTouch = _touch;
-            }
-            else if (_touch.phase == TouchPhase.Moved)
-            {
-                float _deltaX = _initTouch.position.x - _touch.position.x;
-                float _deltaY = _initTouch.position.y - _touch.position.y;
+                if (_touch.phase == TouchPhase.Began)
+                {
+                    _initTouch = _touch;
+                }
+                else if (_touch.phase == TouchPhase.Moved)
+                {
+                    float _deltaX = _initTouch.position.x - _touch.position.x;
+                    float _deltaY = _initTouch.position.y - _touch.position.y;
 
-                _rotX -= _deltaY * Time.deltaTime * _rotationSpeed * _direction;
-                _rotY += _deltaX * Time.deltaTime * _rotationSpeed * _direction;
+                    _rotX -= _deltaY * Time.deltaTime * _rotationSpeed * _direction;
+                    _rotY += _deltaX * Time.deltaTime * _rotationSpeed * _direction;
 
-                _rotX = Mathf.Clamp(_rotX, -45f, 45f);
+                    _rotX = Mathf.Clamp(_rotX, -45f, 45f);
 
-                _swipeCameraControl.transform.eulerAngles = new Vector3(_rotX, _rotY, 0f);
-            }
-            else if (_touch.phase == TouchPhase.Ended)
-            {
-                _initTouch = new Touch();
+                    _swipeCameraControl.transform.eulerAngles = new Vector3(_rotX, _rotY, 0f);
+                }
+                else if (_touch.phase == TouchPhase.Ended)
+                {
+                    _initTouch = new Touch();
+                }
             }
         }
     }
