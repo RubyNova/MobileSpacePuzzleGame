@@ -14683,6 +14683,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 624
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!1 &626720410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 626720412}
+  - component: {fileID: 626720411}
+  m_Layer: 0
+  m_Name: SwipeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &626720411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626720410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ae71e381ec49d4480329070a714ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swipeCameraControl: {fileID: 992988506}
+  _rotationSpeed: 0.2
+  _direction: -1
+--- !u!4 &626720412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626720410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.13, y: 4.04, z: 0.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 663
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &630033797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23871,6 +23917,8 @@ GameObject:
   - component: {fileID: 992988507}
   - component: {fileID: 992988506}
   - component: {fileID: 992988505}
+  - component: {fileID: 992988508}
+  - component: {fileID: 992988509}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -23936,13 +23984,42 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992988504}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.13, y: 4.04, z: 0.12}
+  m_LocalRotation: {x: 0.14327651, y: -0.7379697, z: 0.16565421, w: 0.6383034}
+  m_LocalPosition: {x: 10.259054, y: 11.041311, z: 31.98232}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 106
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &992988508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992988504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ae71e381ec49d4480329070a714ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swipeCameraControl: {fileID: 992988506}
+  _rotationSpeed: 0.05
+  _direction: -1
+--- !u!114 &992988509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992988504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c1c58e8d3d4e046a1813d062ab64b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoomSpeed: 0.05
+  _targetCamera: {fileID: 992988506}
 --- !u!1001 &993323883
 PrefabInstance:
   m_ObjectHideFlags: 0
