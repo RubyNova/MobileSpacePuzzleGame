@@ -6,50 +6,34 @@ using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour
 {
-    private float _health;
-    private WaveSpawner _controllingSpawner;
-    private bool _isDead; 
-   
-    [Header("Attributes")]
-    [FormerlySerializedAs("start Health")] [SerializeField] private float _startHealth = 100;
-    [FormerlySerializedAs("Movement Speed")] [SerializeField] private float _speed = 100;
-
-    [Header("Unity Stuff")]
-    [FormerlySerializedAs("Health Bar")] [SerializeField] private Image _healthBar;
-    [FormerlySerializedAs("Death Effect")] [SerializeField] private GameObject _deathEffect;
+    [Header("Attributes")] 
+    [FormerlySerializedAs("_startHealth")] [SerializeField] private float startHealth;
+    [FormerlySerializedAs("_speed")] [SerializeField] private float speed;
+    [FormerlySerializedAs("_fireResistance")] [SerializeField] [Range(0, 100)] private int fireResist;
+    [FormerlySerializedAs("_physicalResistance")] [SerializeField] [Range(0, 100)] private int physicalResist;
     
-    public void Init(WaveSpawner controllingSpawner) => _controllingSpawner = controllingSpawner;
+    [Header("UI")]
+    [FormerlySerializedAs("_healthBar")] [SerializeField] private Image healthBar;
     
-    public float speed => _speed;
+    [Header("OnDeath")]
+    [FormerlySerializedAs("_drops")] [SerializeField] private GameObject[] drops;
+    [FormerlySerializedAs("_deathEffect")] [SerializeField] private GameObject deathEffect;
 
-    private void Start()
+    // Attributes
+    public float StartHealth => startHealth;
+    public float Speed
     {
-        _health = _startHealth;
+        get => speed;
+        set => speed = value;
     }
 
-    public void TakeDamage (float amount)
-    {
-        _health -= amount;
-
-        _healthBar.fillAmount = _health / _startHealth;
-
-        if (_health <= 0 && !_isDead)
-        {
-            Die();
-        }
-    }
-
-    private void Die ()
-    {
-        _isDead = true;
-
-        GameObject effect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 1f);
-
-        _controllingSpawner.EnemiesAlive--;
-
-        Destroy(gameObject);
-    }
+    public int FireResist => fireResist;
+    public int PhysicalResist => physicalResist;
     
+    // UI
+    public Image HealthBar => healthBar;
     
+    // OnDeath
+    public GameObject[] Drops => drops;
+    public GameObject DeathEffect => deathEffect;
 }

@@ -9,20 +9,21 @@ public class Graph : MonoBehaviour
     public bool displayGridGizmos;
     
     //public Transform player;
-    public LayerMask unwalkableMask;
-    public Vector2 gridWorldSize;
-    public float nodeRadius;
+    private LayerMask walkableMask;
+    public LayerMask unwalkableMask; 
+    public Vector2 gridWorldSize; // Define area in world coordinates the grid will cover
+    public float nodeRadius; // Define how much space each individual node covers
 
     public TerrainType[] walkableRegions;
     public  int ObstacleProximityPenalty = 10;
-    private LayerMask walkableMask;
-    
+
     // Alternative to going through the TerrainType[] each time. This dictionary has a int as its key and value.
     Dictionary<int, int> walkableRegionsDictionary = new Dictionary<int, int>();
     //2 Dimensional Array of Nodes
-    Node[,] grid;
+    Node[,] grid; 
 
-    float nodeDiameter;
+    // How many nodes can fit in a grid
+    float nodeDiameter; 
     int gridSizeX, gridSizeY;
 
     int penaltyMin = int.MaxValue;
@@ -55,14 +56,24 @@ public class Graph : MonoBehaviour
     {
         get { return gridSizeX * gridSizeY; }
     }
+    
+    public bool WalkableCheck(Vector3 worldPoint)
+    {
+        bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+
+        return walkable;
+    }
 
     void CreateGrid()
     {
+        // Create a new 2D array of nodes with values contained in gridX and gridY
         grid = new Node[gridSizeX,gridSizeY];
-        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
+        // Get the bottom left position of the world, using transform.position as the center of the selection.
+        Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2; // Get left edge and bottom edge of the world
 
         for (int x = 0; x < gridSizeX; x ++) {
             for (int y = 0; y < gridSizeY; y ++) {
+                // This gets each point a node is going to occupy in the world
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);
                 // Collision check of each node - this bool is true if we do not collide with anything
                 // CheckSphere returns true if there is a collision, else it will return false
@@ -85,7 +96,7 @@ public class Graph : MonoBehaviour
                     {
                         movementPenalty += ObstacleProximityPenalty;
                     }
-
+                    // Create new node and populate grid with node
                     grid[x,y] = new Node(walkable, worldPoint, x, y, movementPenalty);
             }
         }
@@ -217,7 +228,7 @@ public class Graph : MonoBehaviour
     private void OnDrawGizmos()
     {
         // the y axis represents the z axis in 3D-space
-        Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,1,gridWorldSize.y));
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
         
             // Check if the grid is working by checking if it is null
@@ -230,7 +241,7 @@ public class Graph : MonoBehaviour
                     
                     // If walkable set node to Gizmos current colour, otherwise set it to red
                     Gizmos.color = (n.walkable) ? Gizmos.color : Color.red;
-                    Gizmos.DrawCube(n.worldPosition, new Vector3(0.3f,0.3f,0.3f ) * (nodeDiameter));
+                    Gizmos.DrawCube(n.worldPosition, new Vector3(0.3f,0.3f,0.3f ) * (nodeDiameter -.1f));
                 }
             }
     }
