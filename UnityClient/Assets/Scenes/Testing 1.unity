@@ -543,9 +543,14 @@ MonoBehaviour:
     - compositions:
       - enemyType: {fileID: 6252818513833982575, guid: 302fca5c77d958040a4a079a45e4d093,
           type: 3}
+        amount: 5
+        spawnRate: 0.93
+        nextDelay: 0.97
+      - enemyType: {fileID: 6252818513833982575, guid: 9019efaded9959b438c78cdf6fcffa02,
+          type: 3}
         amount: 2
         spawnRate: 0.93
-        nextDelay: 1.8
+        nextDelay: 1.09
   waveCountdownText: {fileID: 569805561}
   enemiesRemainingText: {fileID: 2104894715}
   currentLevelText: {fileID: 515649834}
@@ -2186,7 +2191,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 093b8460bff837e41bf64ba390b5489f, type: 2}
+  - {fileID: 2100000, guid: d11055c40fd6677489addaeb4a719b25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
