@@ -1,11 +1,6 @@
-﻿using System;
+﻿
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityScript.Steps;
-using static UnityEngine.Random;
 using Random = UnityEngine.Random;
 
 
