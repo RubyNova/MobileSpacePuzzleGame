@@ -1,0 +1,27 @@
+Tutorial Text
+
+Welcome to the control room captain. 
+
+Our shields have been broken and now we face an assault on the inside of our ship!
+
+Our only hope is to repel the invaders by activating our defence turrets to fight them back.
+
+Our ship's mainframe is down, so we cannot do this automatically.
+
+The only way we can activate our turrets is to manually activate them through our security camera protocols.
+
+Before our enemies attack, I will give you a quick reminder of how to access these defences.
+
+This is the control room, from here we can access the main camera inside any of our ships' rooms. Take a quick look around.
+You can look around by moving your phone around.
+You can also swipe to look as well as pinch to zoom in and out.
+
+From the control room, you can change to the main camera in a room by clicking on the screen in front of you. Click on the screen which is displaying a camera to continue.
+
+You are now looking through a security camera. From here you can look around the room as well as activate a turret. To activate a turret, simply click on the turret base.
+
+You can also change to any security camera that you see throughout the ship. To continue click on the security camera.
+
+You can return to the control room at any time by clicking on the control room button on the bottom left of your screen.
+
+The enemies are preparing their assualt! Best get ready to defend your ship captain.
