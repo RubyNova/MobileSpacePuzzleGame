@@ -50,7 +50,7 @@
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                UNITY_TRANSFER_FOG(o, o.vertex);
                 return o;
             }
 
@@ -58,8 +58,9 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                col = col * _TintColour;
-                col.a = lerp(_Transparency, 1, sin(i.uv.x * 1000.0));
+                float transparency = clamp((col.r + col.g + col.b) / 3, 0.4, 1);
+                col = clamp(col * _TintColour, _TintColour * 0.5, _TintColour);
+                //col.a = transparency;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
