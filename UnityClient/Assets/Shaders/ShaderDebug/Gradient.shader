@@ -47,9 +47,9 @@
             
             fixed4 frag (v2f i) : SV_Target
             {
-            _ColourBegin.rgba = 1,1,1,1;
-            _ColourEnd.rgba = 0,0,0,1;
-                // sample the texture
+                _ColourBegin.rgba = 1,1,1,1;
+                _ColourEnd.rgba = 0,0,0,1;
+
                 fixed4 col = lerp(_ColourBegin, _ColourEnd, i.uv.y);
             col.a = 1;
     
