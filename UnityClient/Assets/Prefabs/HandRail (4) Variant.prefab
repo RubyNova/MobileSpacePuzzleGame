@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1974922212666808, guid: 3b350c5cfbecefc4580530b2d3ac0570, type: 3}
       propertyPath: m_Name
-      value: HandRail (4)
+      value: HandRail (4) Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974922212666808, guid: 3b350c5cfbecefc4580530b2d3ac0570, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4438397176091778, guid: 3b350c5cfbecefc4580530b2d3ac0570, type: 3}
       propertyPath: m_LocalPosition.x
