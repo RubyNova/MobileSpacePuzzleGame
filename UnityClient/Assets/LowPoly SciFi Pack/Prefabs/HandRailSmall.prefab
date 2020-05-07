@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33583935993330938}
   - component: {fileID: 23973422362335452}
   - component: {fileID: 64474556618658170}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HandRailSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
