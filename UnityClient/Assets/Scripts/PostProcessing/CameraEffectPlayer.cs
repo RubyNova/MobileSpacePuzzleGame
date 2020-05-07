@@ -18,6 +18,12 @@ namespace PostProcessing
             set => _effectName = value;
         }
 
-        private void OnRenderImage(RenderTexture source, RenderTexture destination) => Graphics.Blit(source, destination, _effectMaterial);
+        public Material EffectMaterial
+        {
+            get => _effectMaterial;
+            set => _effectMaterial = value;
+        }
+
+        private void OnRenderImage(RenderTexture source, RenderTexture destination) => Graphics.Blit(source, destination, EffectMaterial);
     }
 }

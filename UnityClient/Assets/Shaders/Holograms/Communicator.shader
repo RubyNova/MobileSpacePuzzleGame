@@ -52,7 +52,7 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv) + _TintColour;
-                col.a = clamp(sin(abs(i.uv.y) * 100), 0.0, 0.5) * _Transparency + (clamp(sin(abs(i.uv.x) * 100), 0.0, 0.5) * _Transparency); //fmod(2, i.uv.y); //lerp(0, _Transparency, i.uv.y);
+                col.a = clamp(sin(abs(i.uv.y) * 100), 0.0, 0.5) * _Transparency + (clamp(sin(abs(i.uv.x) * 100), 0.0, 0.5) * _Transparency);
 
     
                 return col;
