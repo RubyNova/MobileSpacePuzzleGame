@@ -58,9 +58,11 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+                col = lerp(fixed4(1, 1, 1, 1), col, fixed4(1, 1, 1, 1) - col);
                 float transparency = clamp((col.r + col.g + col.b) / 3, 0.4, 1);
                 col = clamp(col * _TintColour, _TintColour * 0.5, _TintColour);
-                //col.a = transparency;
+                
+                col.a = transparency;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
