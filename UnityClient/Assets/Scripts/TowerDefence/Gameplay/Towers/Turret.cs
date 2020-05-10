@@ -67,6 +67,8 @@ public class Turret : MonoBehaviour
         
         anim = GetComponent<Animator>();
         InvokeRepeating(nameof(UpdateTarget), 0f, 0.5f);
+        //Buy Sound
+        FindObjectOfType<AudioManager>().Play("Upgrade_Build");
     }
     
     // ++ Helper Function ++
@@ -191,10 +193,16 @@ public class Turret : MonoBehaviour
         if (useLaser)
         { // Do laser functionality
             Laser();
+
+            //Sound for ice tower
+            FindObjectOfType<AudioManager>().Play("FreezTurret");
         }
         else if (useFire)
         {
             Fire();
+
+            //Sound for fire tower
+            FindObjectOfType<AudioManager>().Play("FireTurret");
         }
         else
         { // Do bullet functionality
@@ -203,6 +211,7 @@ public class Turret : MonoBehaviour
             {
                 Shoot();
                 fireCountdown = 1f / fireRate;
+                FindObjectOfType<AudioManager>().Play("RailGun");
             }
 
             fireCountdown -= Time.deltaTime;
@@ -225,6 +234,8 @@ public class Turret : MonoBehaviour
     {
         fireImpact.Play();
 
+        
+
         Vector3 dir = target.position - transform.position;
 
         fireImpact.transform.rotation = Quaternion.LookRotation(dir);
@@ -239,6 +250,8 @@ public class Turret : MonoBehaviour
         
         if (!lineRender.enabled)
         {
+            //Sound for ice tower
+            //FindObjectOfType<AudioManager>().Play("FreezTurret");
             lineRender.enabled = true;
             lineImpact.Play();
             lineLight.enabled = true;
@@ -262,6 +275,9 @@ public class Turret : MonoBehaviour
         
         // Set to destroyed state in FSM
         anim.SetBool(nameof(destroyed), true);
+
+        //SOUND tURRET BROKEN
+        FindObjectOfType<AudioManager>().Play("TowerDestroyed");
     }
 
     public void TakeDamage(int damage)
@@ -277,6 +293,8 @@ public class Turret : MonoBehaviour
         
         // Set to NOT destroyed state in FSM
         anim.SetBool(nameof(destroyed), false);
+
+        
     }
     
     private void Shoot()
@@ -286,6 +304,10 @@ public class Turret : MonoBehaviour
 
         if (bullet != null)
             bullet.Seek(target);
+
+        //implement gun sound
+
+        //FindObjectOfType<AudioManager>().Play("RailGun");
     }
 
     private void OnDrawGizmosSelected()

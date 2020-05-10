@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066c7d0360e82974997049dbdcd63212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 100
+  startHealth: 120
   startSpeed: 4
   fireResist: 0.3
   physicalResist: 0.1

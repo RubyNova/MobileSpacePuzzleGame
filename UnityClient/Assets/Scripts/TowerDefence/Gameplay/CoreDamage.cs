@@ -18,5 +18,8 @@ public class CoreDamage : MonoBehaviour
         
         // Take away a life from the player
         PlayerStats.Lives--;
+
+        //small explosion damage
+        FindObjectOfType<AudioManager>().Play("EnemyImpact");
     }
 }

@@ -135,7 +135,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0b8bcaaf1636404fa419a7768c6bf9e, type: 2}
+  - {fileID: 2100000, guid: e8a209a686bcb06419983692094691e6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -440,11 +440,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7366054031785482120}
     m_Modifications:
-    - target: {fileID: 6070135129908390600, guid: 855e569d6bc832648842a45922aeaade,
-        type: 3}
-      propertyPath: m_Name
-      value: LaserImpactEffect
-      objectReference: {fileID: 0}
     - target: {fileID: 2183052645009217101, guid: 855e569d6bc832648842a45922aeaade,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -499,6 +494,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070135129908390600, guid: 855e569d6bc832648842a45922aeaade,
+        type: 3}
+      propertyPath: m_Name
+      value: LaserImpactEffect
       objectReference: {fileID: 0}
     - target: {fileID: 6070720475896074952, guid: 855e569d6bc832648842a45922aeaade,
         type: 3}

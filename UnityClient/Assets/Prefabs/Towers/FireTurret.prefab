@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 879adad6cf0c8b542a5ab90a4d8bcc28, type: 2}
+  - {fileID: 2100000, guid: 1eec3077e451a4544ba5446c0e6ec18c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
   lineLight: {fileID: 0}
   useFire: 1
   fireImpact: {fileID: 2607514955258046604}
-  damagePerHit: 4
-  burnDamage: 2
+  damagePerHit: 3
+  burnDamage: 1
   burnDuration: 6
   burnEffect: {fileID: 493609459075301613, guid: 612e62e4953704f48962b63b29958b4d,
     type: 3}

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         else if (!WaveSpawned) startWaveEarlyUi.SetActive(false);
 
         if (PlayerStats.Lives <= 0) EndGame();
+        
     }
 
     private void EndGame()
@@ -34,6 +35,9 @@ public class GameManager : MonoBehaviour
         GameIsOver = true;
         print("Game Over!");
         
+        FindObjectOfType<AudioManager>().Play("ExplosionLose");
+        FindObjectOfType<AudioManager>().Play("GameOver");
+
         gameOverUi.SetActive(true);
     }
 }
