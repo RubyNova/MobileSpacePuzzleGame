@@ -27,8 +27,8 @@ public class BuildablePoint : MonoBehaviour
     
     private void Start()
     {
-        rend = GetComponent<Renderer>();
-        startColor = rend.material.color;
+        rend = transform.GetChild(2).GetComponent<Renderer>();
+        // startColor = rend.material.color;
 
         buildManager = BuildManager.instance;
     }

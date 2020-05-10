@@ -97,7 +97,7 @@ MonoBehaviour:
   explosionRadius: 0
   ImpactEffect: {fileID: 3201578576954879385, guid: b6851115f3666fe4ab312930a7590c9a,
     type: 3}
-  damage: 50
+  damage: 10
 --- !u!135 &1884966669989438097
 SphereCollider:
   m_ObjectHideFlags: 0
