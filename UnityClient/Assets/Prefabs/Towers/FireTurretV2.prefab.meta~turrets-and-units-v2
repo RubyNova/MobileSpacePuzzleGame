@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:UnityClient/Assets/Prefabs/Towers/Plot.prefab.meta
+guid: e5472eab955de604bb70ff67867a5442
+=======
+guid: 12b037b25f76d0f4c83596ff14b0b952
+>>>>>>> turrets-and-units-v2:UnityClient/Assets/Prefabs/Towers/FireTurretV2.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
