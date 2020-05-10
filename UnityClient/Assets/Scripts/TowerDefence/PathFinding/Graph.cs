@@ -31,22 +31,22 @@ public class Graph : MonoBehaviour
 
     void Awake()
     {
-        nodeDiameter = nodeRadius*2;
-        
+        nodeDiameter = nodeRadius * 2;
+
         // Returns how many nodes can fit into the world size(X)
         // Round the nodes up to whole numbers by converting into integers
-        gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
-        gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
+        gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
+        gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
 
         foreach (TerrainType region in walkableRegions)
         {
             // Iterate through terrain types in walkableRegions and add each of them to walkableMask 
             // Here the bitwise OR operator is used to work out the accumulative value of the layer masks.
-            walkableMask.value |= region.terrainMask.value; 
+            walkableMask.value |= region.terrainMask.value;
             // Add the value of layerMasks to a dictionary to avoid having to keep going through the loop
             // Pass in the value of the layer located by turning the binary value back into the layer number : 9 ECT
             // Use log to do this. (int) casts the returned float to an integer.
-            walkableRegionsDictionary.Add((int)Mathf.Log(region.terrainMask.value, 2), region.terrainPenalty);
+            walkableRegionsDictionary.Add((int) Mathf.Log(region.terrainMask.value, 2), region.terrainPenalty);
         }
 
         CreateGrid();

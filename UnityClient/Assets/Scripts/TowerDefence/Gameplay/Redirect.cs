@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Redirect : MonoBehaviour
 {
@@ -14,9 +16,20 @@ public class Redirect : MonoBehaviour
     {
         if (!available) return;
         //if (other.gameObject.name != "Unit(Clone)") return;
-        if (!other.GetComponent<Unit>()) return;
+        if (!other.GetComponent<Enemy>()) return;
+        if (name == "Start")
+        {
+            if (!ChanceOfUsingShortCut()) return;
+        }
         print("contains" + other.GetComponent<EnemyMovement>().GetTarget());
         movement = other.GetComponent<EnemyMovement>();
         movement.ShortCut(shortcut);
+    }
+
+    private bool ChanceOfUsingShortCut()
+    { // 50% chance to take shortcut
+        int randomNumber = Random.Range(0, 2);
+        print(randomNumber);
+        return randomNumber == 1;
     }
 }

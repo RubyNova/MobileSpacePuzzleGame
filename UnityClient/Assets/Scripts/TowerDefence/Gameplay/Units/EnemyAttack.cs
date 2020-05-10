@@ -12,6 +12,8 @@ public class EnemyAttack : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private bool canAttack;
 
+    [SerializeField] private bool noRotate;
+    
     [Header("Attack Beam")] 
     [SerializeField] private LineRenderer lineRender;
     [SerializeField] private int damage = 10;
@@ -105,9 +107,12 @@ public class EnemyAttack : MonoBehaviour
         if (countdown <= 0)
             if (target) 
                 AttemptAttack();
-        
-        // Lock On To Target
-        LockOnTarget();
+
+        if (noRotate)
+        {
+            // Lock On To Target
+            LockOnTarget();
+        }
 
         countdown -= Time.deltaTime;
     }

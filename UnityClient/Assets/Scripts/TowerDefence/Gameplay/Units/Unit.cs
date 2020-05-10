@@ -58,7 +58,7 @@ public class Unit : MonoBehaviour
 
     }
     
-    /*private void OnParticleCollision(GameObject other)
+    private void OnParticleCollision(GameObject other)
     { // Fire Turret Damage
         if (_isDead) return;
         var turret = other.GetComponentInParent<Turret>();
@@ -71,7 +71,7 @@ public class Unit : MonoBehaviour
         if (_isBurning) return;
         _isBurning = true;
         fireEffect = Instantiate(turret.burnEffect, transform.position, transform.rotation);
-    }*/
+    }
     
     public void TakeDamage(float amount)
     {
