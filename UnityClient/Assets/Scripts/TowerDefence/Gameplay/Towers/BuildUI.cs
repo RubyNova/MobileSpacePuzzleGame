@@ -98,17 +98,27 @@ public class BuildUI : MonoBehaviour
         target.UpgradeTurret();
         // Close menu on Upgrade
         BuildManager.instance.DeselectTurret();
+
+        //upgrade sound 
+        FindObjectOfType<AudioManager>().Play("Upgrade_Build");
     }
 
     public void Sell()
     { // When selling a turret
         target.SellTurret();
         BuildManager.instance.DeselectTurret();
+
+
+        //sell Sound
+        FindObjectOfType<AudioManager>().Play("Sell");
     }
 
     public void Repair()
     { // When Repairing a destroyed Turret
         target.RepairTurret();
         BuildManager.instance.DeselectTurret();
+
+        //repair sound
+        FindObjectOfType<AudioManager>().Play("Repair");
     }
 }

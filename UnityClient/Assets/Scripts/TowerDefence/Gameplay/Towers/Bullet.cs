@@ -67,6 +67,9 @@ public class Bullet : MonoBehaviour
             Damage(target);
         }
 
+       /* //BULLET SOUND IMPACT
+        FindObjectOfType<AudioManager>().Play("BulletImpact");*/
+
         hitWall = false;
         
         Destroy(gameObject);
@@ -80,6 +83,9 @@ public class Bullet : MonoBehaviour
             if (collider.CompareTag("Enemy"))
             { // If they are an enemy damage them 
                 Damage(collider.transform);
+
+                //BULLET SOUND IMPACT
+               FindObjectOfType<AudioManager>().Play("BulletImpact");
             }
         }
     }
