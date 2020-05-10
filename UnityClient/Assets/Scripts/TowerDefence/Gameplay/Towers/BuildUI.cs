@@ -26,7 +26,6 @@ public class BuildUI : MonoBehaviour
     
     private void Update()
     {
-        // Dont Check if there is no turret on the plot
         if (!target) return;
         if (!target.turret) return;
         
@@ -51,7 +50,6 @@ public class BuildUI : MonoBehaviour
             return;
         }
         
-        
         healthBar.fillAmount = turretScript.Health / turretScript.StartHealth;
     }
     
@@ -59,7 +57,7 @@ public class BuildUI : MonoBehaviour
     { // Give information about selected turret via its buildable point
         target = point;
 
-        transform.position = target.GetBuildPosition();
+        //transform.position = target.GetBuildPosition();
         
         // If turret is fully upgraded do not allow any further upgrades 
         if (!target.isUpgraded)

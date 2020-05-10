@@ -218,7 +218,7 @@ public class Turret : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles; // To rotate only around Y axis
 
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        partToRotate.rotation = Quaternion.Euler(rotation.x, rotation.y, 0f);
     }
     
     private void Fire()
@@ -250,7 +250,7 @@ public class Turret : MonoBehaviour
         // Handle particle System
         Vector3 targetToTurret = firePoint.position - target.position;
         // Create Effect at collision point of Laser and Enemy ( impact effect offset - *offset)
-        lineImpact.transform.position = target.position + targetToTurret.normalized; //* .5f;
+        lineImpact.transform.position = target.position + targetToTurret.normalized*  .5f;
         // Point towards turret
         lineImpact.transform.rotation = Quaternion.LookRotation(targetToTurret);
     }
