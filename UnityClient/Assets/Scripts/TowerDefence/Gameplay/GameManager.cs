@@ -6,23 +6,27 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
     public static bool GameIsOver;
+    public static bool WaveSpawned;
     
-    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject gameOverUi;
+    [SerializeField] private GameObject startWaveEarlyUi;
     
     private void Start()
     {
         // Called start of every Scene
         GameIsOver = false;
+        WaveSpawned = false;
     }
     
     void Update()
     {
         if (GameIsOver) return;
+        
+        // If wave is spawned Show UI to start next wave
+        if (WaveSpawned) startWaveEarlyUi.SetActive(true);
+        else if (!WaveSpawned) startWaveEarlyUi.SetActive(false);
 
-        if (PlayerStats.Lives <= 0)
-        {
-            EndGame();
-        }
+        if (PlayerStats.Lives <= 0) EndGame();
     }
 
     private void EndGame()
@@ -30,6 +34,6 @@ public class GameManager : MonoBehaviour
         GameIsOver = true;
         print("Game Over!");
         
-        gameOverUI.SetActive(true);
+        gameOverUi.SetActive(true);
     }
 }
