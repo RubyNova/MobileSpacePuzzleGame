@@ -2,7 +2,7 @@
 {
     Properties
     {
-        _MainTex ("Albedo Texture", 2D) = "white" {}
+        _MainTex ("Albedo Texture", 2D) = "black" {}
         _TintColour("Tint", Color) = (1,1,1,1)
         _Transparency("Transparency", Range(0.0, 0.5)) = 0.25
     }
