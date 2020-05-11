@@ -115,7 +115,7 @@ public class Turret : MonoBehaviour
             if (distanceToEnemy < shortestDistance && distanceToEnemy <= range)
             { // Found enemy closer than any previously
                 // Check if wall is in the way
-                if (CheckForWall(enemy)) continue;
+                //if (CheckForWall(enemy)) continue;
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }

@@ -8,9 +8,13 @@ public class GameOver : MonoBehaviour
 {
     [SerializeField] private Text roundsText;
 
+    [SerializeField] private GameObject canvasToHide;
+
     private void OnEnable()
     { // Called when Object is enabled
         roundsText.text = PlayerStats.Rounds.ToString();
+
+        canvasToHide.SetActive(false);
     }
 
     public void Retry()

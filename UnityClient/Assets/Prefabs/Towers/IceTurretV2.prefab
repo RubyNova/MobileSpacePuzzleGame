@@ -271,8 +271,8 @@ MonoBehaviour:
   fireRate: 1
   useLaser: 1
   lineRender: {fileID: 5132212531963490309}
-  damageOverTime: 45
-  slowPercentage: 0.6
+  damageOverTime: 50
+  slowPercentage: 0.7
   lineImpact: {fileID: 2163280578857921120}
   lineLight: {fileID: 349402190498144218}
   useFire: 0
@@ -321,7 +321,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7d0b97df7dfa4b04f9adcd1caf7ce8df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

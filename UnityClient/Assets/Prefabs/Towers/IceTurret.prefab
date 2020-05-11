@@ -239,7 +239,7 @@ MonoBehaviour:
   fireRate: 1
   useLaser: 1
   lineRender: {fileID: 5132212531963490309}
-  damageOverTime: 25
+  damageOverTime: 35
   slowPercentage: 0.397
   lineImpact: {fileID: 4398171486405022451}
   lineLight: {fileID: 2870383833157281609}
@@ -289,7 +289,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 7d0b97df7dfa4b04f9adcd1caf7ce8df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -440,6 +440,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7366054031785482120}
     m_Modifications:
+    - target: {fileID: 6070135129908390600, guid: 855e569d6bc832648842a45922aeaade,
+        type: 3}
+      propertyPath: m_Name
+      value: LaserImpactEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 2183052645009217101, guid: 855e569d6bc832648842a45922aeaade,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,11 +499,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6070135129908390600, guid: 855e569d6bc832648842a45922aeaade,
-        type: 3}
-      propertyPath: m_Name
-      value: LaserImpactEffect
       objectReference: {fileID: 0}
     - target: {fileID: 6070720475896074952, guid: 855e569d6bc832648842a45922aeaade,
         type: 3}
