@@ -555,11 +555,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066c7d0360e82974997049dbdcd63212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 120
+  startHealth: 80
   startSpeed: 4
-  fireResist: 0.3
-  physicalResist: 0.1
-  magicResist: 0.2
+  fireResist: 0.2
+  physicalResist: 0
+  magicResist: 0
   worth: 60
   healthBar: {fileID: 5842743004193772819}
   deathEffect: {fileID: 3201578576954879385, guid: b6851115f3666fe4ab312930a7590c9a,

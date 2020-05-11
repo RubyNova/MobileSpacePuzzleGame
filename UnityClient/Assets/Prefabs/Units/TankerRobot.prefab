@@ -557,9 +557,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 450
   startSpeed: 3
-  fireResist: 0.6
-  physicalResist: 0.6
-  magicResist: 0.3
+  fireResist: 0.1
+  physicalResist: 0.2
+  magicResist: 0.2
   worth: 150
   healthBar: {fileID: 5842743004193772819}
   deathEffect: {fileID: 3201578576954879385, guid: b6851115f3666fe4ab312930a7590c9a,

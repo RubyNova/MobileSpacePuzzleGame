@@ -88,8 +88,12 @@ public class WaveManager : MonoBehaviour
         startWaveCountdown.fillAmount = _countdown / timeAtWaveCompletion;
         
         var part = timeAtWaveCompletion / 4;
-        
-        if (_countdown > part * 3) moneyText.text = startingBonus.ToString();
+
+        if (_countdown > part * 3)
+        {
+            currentBonus = startingBonus;
+            moneyText.text = startingBonus.ToString();
+        }
         else if (_countdown > part * 2)
         {
             currentBonus = startingBonus / 4 * 3;
