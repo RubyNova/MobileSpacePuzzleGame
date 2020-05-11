@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
 public class Unit : MonoBehaviour
 {
+    //spawn this when it dies
+    [SerializeField] private GameObject _explosion;
+    
     // Fire Effect
     private bool _isBurning;
     private float _countdown = 0;
@@ -102,5 +106,7 @@ public class Unit : MonoBehaviour
 
         // Destroy Enemy
         Destroy(gameObject);
-    } 
+    }
+
+    private void OnDestroy() => Instantiate(_explosion, transform.position, transform.rotation);
 }
