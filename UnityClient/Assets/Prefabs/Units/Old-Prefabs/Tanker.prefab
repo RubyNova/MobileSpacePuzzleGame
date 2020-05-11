@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 300
   startSpeed: 3
-  fireResist: 0.5
+  fireResist: 0.6
   physicalResist: 0.6
   magicResist: 0.2
   worth: 150

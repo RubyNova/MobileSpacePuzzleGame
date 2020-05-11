@@ -411,7 +411,7 @@ MonoBehaviour:
   fireResist: 0.3
   physicalResist: 0.1
   magicResist: 0.2
-  worth: 40
+  worth: 60
   healthBar: {fileID: 7570969056080339940}
   deathEffect: {fileID: 3201578576954879385, guid: b6851115f3666fe4ab312930a7590c9a,
     type: 3}
