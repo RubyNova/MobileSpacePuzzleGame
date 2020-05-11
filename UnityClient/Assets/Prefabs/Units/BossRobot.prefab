@@ -687,8 +687,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 900
   startSpeed: 3
-  fireResist: 0.4
-  physicalResist: 0.5
+  fireResist: 0.5
+  physicalResist: 0.2
   magicResist: 0.3
   worth: 500
   healthBar: {fileID: 5842743004193772819}

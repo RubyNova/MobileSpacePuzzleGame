@@ -276,7 +276,7 @@ MonoBehaviour:
   lineLight: {fileID: 0}
   useFire: 1
   fireImpact: {fileID: 8029044088152746917}
-  damagePerHit: 3
+  damagePerHit: 4
   burnDamage: 3
   burnDuration: 5
   burnEffect: {fileID: 493609459075301613, guid: 612e62e4953704f48962b63b29958b4d,
@@ -344,11 +344,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7366054031785482120}
     m_Modifications:
-    - target: {fileID: 2002003976191321305, guid: 17a7b5ac77eeebd408bd201b09802b67,
-        type: 3}
-      propertyPath: m_Name
-      value: FlameEffect
-      objectReference: {fileID: 0}
     - target: {fileID: 5890212911556778076, guid: 17a7b5ac77eeebd408bd201b09802b67,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -403,6 +398,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002003976191321305, guid: 17a7b5ac77eeebd408bd201b09802b67,
+        type: 3}
+      propertyPath: m_Name
+      value: FlameEffect
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17a7b5ac77eeebd408bd201b09802b67, type: 3}

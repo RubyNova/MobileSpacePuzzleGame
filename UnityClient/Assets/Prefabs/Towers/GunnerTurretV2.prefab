@@ -49,7 +49,7 @@ MonoBehaviour:
   startHealth: 150
   bulletPrefab: {fileID: 3613278308938062820, guid: 93ec8554b5ea06c4a87d6bce9df107ca,
     type: 3}
-  fireRate: 0.6
+  fireRate: 1.5
   useLaser: 0
   lineRender: {fileID: 0}
   damageOverTime: 30
