@@ -5,13 +5,13 @@ using UnityEngine;
 public class MobileZoom : MonoBehaviour
 {
     [SerializeField]
-    private float _zoomSpeed = 0.1f;
+    private float _zoomSpeed = 0.01f;
 
     [SerializeField]
     private Camera _targetCamera;
 
-    private const float YFov = 0.1f;
-    private const float ZFov = 100f;
+    private const float YFov = 0.01f;
+    private const float ZFov = 50f;
 
     private void Update()
     {

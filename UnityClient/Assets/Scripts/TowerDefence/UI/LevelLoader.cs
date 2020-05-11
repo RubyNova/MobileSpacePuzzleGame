@@ -9,4 +9,8 @@ public class LevelLoader : MonoBehaviour
     {
         SceneManager.LoadScene(loadLevelName);
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

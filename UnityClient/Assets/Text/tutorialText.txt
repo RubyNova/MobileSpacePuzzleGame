@@ -12,13 +12,19 @@ The only way we can activate our turrets is to manually activate them through ou
 
 Before our enemies attack, I will give you a quick reminder of how to access these defences.
 
-This is the control room, from here we can access the main camera inside any of our ships' rooms. Take a quick look around.
+This is the control room, from here we can access the main camera inside any of our ships' rooms.
+
+You will need to access a security camera in one of the rooms to be able to place the turrets.
+
+To do this, tap on the screens in front of you - press the middle screen now.
+
 You can look around by moving your phone around.
+
 You can also swipe to look as well as pinch to zoom in and out.
 
-From the control room, you can change to the main camera in a room by clicking on the screen in front of you. Click on the screen which is displaying a camera to continue.
+You are now looking through a security camera. From here you can look around the room as well as activate a turret. 
 
-You are now looking through a security camera. From here you can look around the room as well as activate a turret. To activate a turret, simply click on the turret base.
+To activate a turret, simply click on the turret base.
 
 You can also change to any security camera that you see throughout the ship. To continue click on the security camera.
 

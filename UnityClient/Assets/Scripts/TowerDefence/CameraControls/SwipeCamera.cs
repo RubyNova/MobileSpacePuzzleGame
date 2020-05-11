@@ -14,7 +14,7 @@ public class SwipeCamera : MonoBehaviour
     private Camera _swipeCameraControl;
 
     [SerializeField]
-    private float _rotationSpeed = 0.2f;
+    private float _rotationSpeed = 0.1f;
 
     [SerializeField]
     private float _direction = -1f;
