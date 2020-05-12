@@ -66,6 +66,7 @@ MonoBehaviour:
   partToRotate: {fileID: 7366054031785482120}
   turnSpeed: 10
   firePoint: {fileID: 7366054031747509688}
+  destroyedSmoke: {fileID: 0}
 --- !u!95 &1464892359
 Animator:
   serializedVersion: 3

@@ -276,7 +276,7 @@ MonoBehaviour:
   lineLight: {fileID: 0}
   useFire: 1
   fireImpact: {fileID: 8029044088152746917}
-  damagePerHit: 4
+  damagePerHit: 3
   burnDamage: 3
   burnDuration: 5
   burnEffect: {fileID: 493609459075301613, guid: 612e62e4953704f48962b63b29958b4d,

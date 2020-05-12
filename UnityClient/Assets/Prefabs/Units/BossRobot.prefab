@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 7120836563917189175}
   m_Layer: 12
   m_Name: BossRobot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,10 +685,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066c7d0360e82974997049dbdcd63212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 900
+  startHealth: 600
   startSpeed: 3
   fireResist: 0.5
-  physicalResist: 0.2
+  physicalResist: 0.1
   magicResist: 0.3
   worth: 500
   healthBar: {fileID: 5842743004193772819}
@@ -764,13 +764,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canAttack: 1
   lineRender: {fileID: 7120836563917189175}
-  damage: 100
+  damage: 80
   chanceToAttack: 0.9
-  maxAttacks: 3
+  maxAttacks: 10
   lineImpact: {fileID: 8868944731005522504}
   lineLight: {fileID: 7045887626688686066}
-  range: 5
-  timeBetweenAttacks: 1
+  range: 8
+  timeBetweenAttacks: 2
   turretTag: Turret
   firePoint: {fileID: 9182564932178759659}
   partToRotate: {fileID: 3919443421651862008}

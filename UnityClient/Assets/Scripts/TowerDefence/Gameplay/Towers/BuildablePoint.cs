@@ -69,10 +69,17 @@ public class BuildablePoint : MonoBehaviour
     
     private void BurntTurret()
     {
-        // Get materials main color
-        var turretRender = turret.transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
-        // Save Turret Color for when it is repaired
-        turretRepairColor = turretRender.color;
+        try
+        {
+            // Get materials main color
+            var turretRender = turret.transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
+            // Save Turret Color for when it is repaired
+            turretRepairColor = turretRender.color;
+        }
+        catch
+        {
+            // ignored
+        }
     }
     
     private void BuildTurret(TurretBlueprint blueprint)

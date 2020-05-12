@@ -60,7 +60,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private Transform partToRotate;
     [SerializeField] private float turnSpeed = 10f;
     [SerializeField] private Transform firePoint;
-    
+
     private void Start()
     {// Set Turrets Health
         health = startHealth;
@@ -164,7 +164,7 @@ public class Turret : MonoBehaviour
     private void Update()
     {
         // Check health of turret
-        if (health >= 0) Destroy();
+        if (health < 0) Destroy();
         
         // If health is less than startHealth turret is damaged
         damaged = health < startHealth;
@@ -247,7 +247,7 @@ public class Turret : MonoBehaviour
         targetEnemy.TakeDamage((damageOverTime - targetEnemy.GetMagicResistance() * damageOverTime) * Time.deltaTime);
         // Apply Slow to Enemy
         targetEnemyMovement.Slow(slowPercentage);
-        
+
         if (!lineRender.enabled)
         {
             //Sound for ice tower
@@ -272,6 +272,7 @@ public class Turret : MonoBehaviour
     { // Turret has been destroyed
         if (health > 0) return; // Not destroyed
         destroyed = true;
+        RemoveDebuffs();
         
         // Set to destroyed state in FSM
         anim.SetBool(nameof(destroyed), true);
