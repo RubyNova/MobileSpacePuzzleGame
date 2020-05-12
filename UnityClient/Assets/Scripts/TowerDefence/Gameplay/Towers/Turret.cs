@@ -164,7 +164,7 @@ public class Turret : MonoBehaviour
     private void Update()
     {
         // Check health of turret
-        if (health < 0) Destroy();
+        if (health < 0) DestroyTurret();
         
         // If health is less than startHealth turret is damaged
         damaged = health < startHealth;
@@ -268,7 +268,7 @@ public class Turret : MonoBehaviour
         lineImpact.transform.rotation = Quaternion.LookRotation(targetToTurret);
     }
     
-    private void Destroy()
+    private void DestroyTurret()
     { // Turret has been destroyed
         if (health > 0) return; // Not destroyed
         destroyed = true;

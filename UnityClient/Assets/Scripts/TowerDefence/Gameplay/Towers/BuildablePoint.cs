@@ -38,17 +38,8 @@ public class BuildablePoint : MonoBehaviour
         return transform.position + positionOffset;
     }
     
-    public void DestroyTurret()
-    {
-        // Get materials main color
-        var turretRender = turret.transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
+    public void DestroyTurret() => CancelInvoke(nameof(CheckForDamage));
 
-        // Apply burnt color
-        turretRender.color = burntColor;
-        // Stop Damage Check
-        CancelInvoke(nameof(CheckForDamage));
-    }
-    
     private void CheckForDamage()
     {
         if (!turret) return; // if there is no turret placed return
@@ -62,26 +53,9 @@ public class BuildablePoint : MonoBehaviour
         if (!isDestroyed) return;
         // Replace with destroyed Turret Prefab
 
-        BurntTurret();
-
         DestroyTurret();
     }
-    
-    private void BurntTurret()
-    {
-        try
-        {
-            // Get materials main color
-            var turretRender = turret.transform.GetChild(0).transform.GetChild(0).GetComponent<Renderer>().material;
-            // Save Turret Color for when it is repaired
-            turretRepairColor = turretRender.color;
-        }
-        catch
-        {
-            // ignored
-        }
-    }
-    
+
     private void BuildTurret(TurretBlueprint blueprint)
     {
         // Check Player has enough Currency
