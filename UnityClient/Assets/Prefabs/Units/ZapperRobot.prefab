@@ -690,7 +690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58183bd5b697ea4ea18762a84abd92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosion: {fileID: 0}
+  _explosion: {fileID: 3488243179851071675, guid: 1d0b6513ceec7f649b2769247888dd3c,
+    type: 3}
 --- !u!114 &1370298276808532285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,12 +749,12 @@ MonoBehaviour:
   canAttack: 1
   lineRender: {fileID: 7120836563917189175}
   damage: 50
-  chanceToAttack: 0.4
-  maxAttacks: 3
+  chanceToAttack: 0.6
+  maxAttacks: 2
   lineImpact: {fileID: 8868944731005522504}
   lineLight: {fileID: 7045887626688686066}
   range: 5
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 1
   turretTag: Turret
   firePoint: {fileID: 9182564932178759659}
   partToRotate: {fileID: 3919443421651862008}
